@@ -1,0 +1,432 @@
+[
+    {
+      "brand": "Dell",
+      "model": "XPS 13",
+      "processor": {
+        "type": "Intel",
+        "model": "i7-1185G7",
+        "speed": 3.0
+      },
+      "ram": {
+        "size": 16,
+        "type": "DDR4"
+      },
+      "storage": {
+        "type": "SSD",
+        "capacity": 512
+      },
+      "graphics": {
+        "type": "Integrated",
+        "model": "Intel Iris Xe",
+        "memory": 0
+      },
+      "display": {
+        "size": 13.3,
+        "resolution": "1920x1080"
+      },
+      "battery": {
+        "capacity": 52,
+        "type": "Li-ion"
+      },
+      "ports": ["USB-C", "Thunderbolt 4", "Headphone Jack"],
+      "price": 1499,
+      "rating": 4.7,
+      "reviews": [
+        {
+          "userId": "64f6b0b0e8b793f8a1a9c2c3",
+          "comment": "Great laptop for productivity.",
+          "rating": 5
+        }
+      ],
+      "availability": true,
+      "images": ["xps13_front.jpg", "xps13_back.jpg"],
+      "releaseDate": "2023-06-01"
+    },
+    {
+      "brand": "Apple",
+      "model": "MacBook Pro 14",
+      "processor": {
+        "type": "Apple M1",
+        "model": "M1 Pro",
+        "speed": 3.2
+      },
+      "ram": {
+        "size": 16,
+        "type": "LPDDR5"
+      },
+      "storage": {
+        "type": "SSD",
+        "capacity": 1024
+      },
+      "graphics": {
+        "type": "Integrated",
+        "model": "Apple M1 GPU",
+        "memory": 0
+      },
+      "display": {
+        "size": 14,
+        "resolution": "3024x1964"
+      },
+      "battery": {
+        "capacity": 70,
+        "type": "Li-ion"
+      },
+      "ports": ["Thunderbolt 4", "HDMI", "SDXC Card Slot"],
+      "price": 1999,
+      "rating": 4.8,
+      "reviews": [
+        {
+          "userId": "64f6b1a0e8b793f8a1a9c3d4",
+          "comment": "Super fast and reliable.",
+          "rating": 5
+        }
+      ],
+      "availability": true,
+      "images": ["macbookpro14_front.jpg", "macbookpro14_side.jpg"],
+      "releaseDate": "2023-05-15"
+    },
+    {
+      "brand": "HP",
+      "model": "Spectre x360",
+      "processor": {
+        "type": "Intel",
+        "model": "i5-1135G7",
+        "speed": 2.4
+      },
+      "ram": {
+        "size": 8,
+        "type": "DDR4"
+      },
+      "storage": {
+        "type": "SSD",
+        "capacity": 256
+      },
+      "graphics": {
+        "type": "Integrated",
+        "model": "Intel Iris Xe",
+        "memory": 0
+      },
+      "display": {
+        "size": 13.5,
+        "resolution": "1920x1080"
+      },
+      "battery": {
+        "capacity": 60,
+        "type": "Li-ion"
+      },
+      "ports": ["USB-C", "USB-A", "Headphone Jack"],
+      "price": 1299,
+      "rating": 4.6,
+      "reviews": [
+        {
+          "userId": "64f6b2b0e8b793f8a1a9c4e5",
+          "comment": "Great for on-the-go use.",
+          "rating": 4
+        }
+      ],
+      "availability": true,
+      "images": ["spectre_front.jpg", "spectre_fold.jpg"],
+      "releaseDate": "2023-03-10"
+    },
+    {
+      "brand": "Asus",
+      "model": "ROG Zephyrus G14",
+      "processor": {
+        "type": "AMD",
+        "model": "Ryzen 9 5900HS",
+        "speed": 3.3
+      },
+      "ram": {
+        "size": 32,
+        "type": "DDR4"
+      },
+      "storage": {
+        "type": "SSD",
+        "capacity": 1024
+      },
+      "graphics": {
+        "type": "Dedicated",
+        "model": "NVIDIA RTX 3060",
+        "memory": 6
+      },
+      "display": {
+        "size": 14,
+        "resolution": "2560x1440"
+      },
+      "battery": {
+        "capacity": 76,
+        "type": "Li-ion"
+      },
+      "ports": ["USB-C", "HDMI", "USB-A"],
+      "price": 1799,
+      "rating": 4.5,
+      "reviews": [
+        {
+          "userId": "64f6b3c0e8b793f8a1a9c5f6",
+          "comment": "Excellent for gaming and work.",
+          "rating": 5
+        }
+      ],
+      "availability": true,
+      "images": ["zephyrus_g14_front.jpg", "zephyrus_g14_back.jpg"],
+      "releaseDate": "2023-02-01"
+    },
+    {
+      "brand": "Lenovo",
+      "model": "ThinkPad X1 Carbon",
+      "processor": {
+        "type": "Intel",
+        "model": "i7-1165G7",
+        "speed": 2.8
+      },
+      "ram": {
+        "size": 16,
+        "type": "DDR4"
+      },
+      "storage": {
+        "type": "SSD",
+        "capacity": 512
+      },
+      "graphics": {
+        "type": "Integrated",
+        "model": "Intel Iris Xe",
+        "memory": 0
+      },
+      "display": {
+        "size": 14,
+        "resolution": "1920x1080"
+      },
+      "battery": {
+        "capacity": 57,
+        "type": "Li-ion"
+      },
+      "ports": ["USB-C", "HDMI", "USB-A"],
+      "price": 1599,
+      "rating": 4.9,
+      "reviews": [
+        {
+          "userId": "64f6b4d0e8b793f8a1a9c6a7",
+          "comment": "Solid performance for business.",
+          "rating": 5
+        }
+      ],
+      "availability": true,
+      "images": ["thinkpad_x1_front.jpg", "thinkpad_x1_side.jpg"],
+      "releaseDate": "2023-04-05"
+    },
+    {
+      "brand": "Acer",
+      "model": "Predator Helios 300",
+      "processor": {
+        "type": "Intel",
+        "model": "i7-12700H",
+        "speed": 3.5
+      },
+      "ram": {
+        "size": 16,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "SSD",
+        "capacity": 1024
+      },
+      "graphics": {
+        "type": "Dedicated",
+        "model": "NVIDIA RTX 3070",
+        "memory": 8
+      },
+      "display": {
+        "size": 15.6,
+        "resolution": "1920x1080"
+      },
+      "battery": {
+        "capacity": 66,
+        "type": "Li-ion"
+      },
+      "ports": ["USB-C", "HDMI", "Ethernet"],
+      "price": 1799,
+      "rating": 4.7,
+      "reviews": [
+        {
+          "userId": "64f6b5e0e8b793f8a1a9c7b8",
+          "comment": "A great laptop for gaming.",
+          "rating": 4
+        }
+      ],
+      "availability": true,
+      "images": ["helios300_front.jpg", "helios300_back.jpg"],
+      "releaseDate": "2023-07-22"
+    },
+    {
+      "brand": "MSI",
+      "model": "Stealth 15M",
+      "processor": {
+        "type": "Intel",
+        "model": "i7-11800H",
+        "speed": 2.3
+      },
+      "ram": {
+        "size": 16,
+        "type": "DDR4"
+      },
+      "storage": {
+        "type": "SSD",
+        "capacity": 512
+      },
+      "graphics": {
+        "type": "Dedicated",
+        "model": "NVIDIA RTX 3060",
+        "memory": 6
+      },
+      "display": {
+        "size": 15.6,
+        "resolution": "1920x1080"
+      },
+      "battery": {
+        "capacity": 53,
+        "type": "Li-ion"
+      },
+      "ports": ["USB-C", "HDMI", "USB-A"],
+      "price": 1599,
+      "rating": 4.4,
+      "reviews": [
+        {
+          "userId": "64f6b6f0e8b793f8a1a9c8c9",
+          "comment": "Lightweight and powerful.",
+          "rating": 4
+        }
+      ],
+      "availability": true,
+      "images": ["stealth15m_front.jpg", "stealth15m_back.jpg"],
+      "releaseDate": "2023-06-15"
+    },
+    {
+      "brand": "Razer",
+      "model": "Blade 15",
+      "processor": {
+        "type": "Intel",
+        "model": "i9-11900H",
+        "speed": 3.1
+      },
+      "ram": {
+        "size": 32,
+        "type": "DDR4"
+      },
+      "storage": {
+        "type": "SSD",
+        "capacity": 1024
+      },
+      "graphics": {
+        "type": "Dedicated",
+        "model": "NVIDIA RTX 3080",
+        "memory": 8
+      },
+      "display": {
+        "size": 15.6,
+        "resolution": "2560x1440"
+      },
+      "battery": {
+        "capacity": 80,
+        "type": "Li-ion"
+      },
+      "ports": ["USB-C", "HDMI", "USB-A"],
+      "price": 2499,
+      "rating": 4.9,
+      "reviews": [
+        {
+          "userId": "64f6b7e0e8b793f8a1a9c9da",
+          "comment": "Perfect for gaming and video editing.",
+          "rating": 5
+        }
+      ],
+      "availability": true,
+      "images": ["blade15_front.jpg", "blade15_side.jpg"],
+      "releaseDate": "2023-08-30"
+    },
+    {
+      "brand": "Gigabyte",
+      "model": "Aero 15 OLED",
+      "processor": {
+        "type": "Intel",
+        "model": "i9-12900HK",
+        "speed": 3.8
+      },
+      "ram": {
+        "size": 32,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "SSD",
+        "capacity": 2048
+      },
+      "graphics": {
+        "type": "Dedicated",
+        "model": "NVIDIA RTX 3080",
+        "memory": 8
+      },
+      "display": {
+        "size": 15.6,
+        "resolution": "3840x2160"
+      },
+      "battery": {
+        "capacity": 90,
+        "type": "Li-ion"
+      },
+      "ports": ["USB-C", "HDMI", "USB-A"],
+      "price": 2799,
+      "rating": 4.9,
+      "reviews": [
+        {
+          "userId": "64f6b8f0e8b793f8a1a9cadd",
+          "comment": "Best display and performance for professionals.",
+          "rating": 5
+        }
+      ],
+      "availability": true,
+      "images": ["aero15_front.jpg", "aero15_side.jpg"],
+      "releaseDate": "2023-09-01"
+    },
+    {
+      "brand": "Microsoft",
+      "model": "Surface Laptop 4",
+      "processor": {
+        "type": "AMD",
+        "model": "Ryzen 7 4980U",
+        "speed": 2.8
+      },
+      "ram": {
+        "size": 16,
+        "type": "LPDDR4X"
+      },
+      "storage": {
+        "type": "SSD",
+        "capacity": 512
+      },
+      "graphics": {
+        "type": "Integrated",
+        "model": "AMD Radeon Graphics",
+        "memory": 0
+      },
+      "display": {
+        "size": 13.5,
+        "resolution": "2256x1504"
+      },
+      "battery": {
+        "capacity": 47,
+        "type": "Li-ion"
+      },
+      "ports": ["USB-C", "USB-A", "Headphone Jack"],
+      "price": 1399,
+      "rating": 4.5,
+      "reviews": [
+        {
+          "userId": "64f6b9e0e8b793f8a1a9cbe7",
+          "comment": "Great for work and entertainment.",
+          "rating": 4
+        }
+      ],
+      "availability": true,
+      "images": ["surface4_front.jpg", "surface4_back.jpg"],
+      "releaseDate": "2023-05-20"
+    }
+]
