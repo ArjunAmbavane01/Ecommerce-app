@@ -19,9 +19,7 @@ app.use(cors({
 
 // Dynamic routes
 const routes = [
-  { path: '/api/user', module: require('./routes/userRoutes') },
-  // You can add more routes here, for example:
-  // { path: '/api/auth', module: require('./routes/authRoutes') },
+  { path: '/api/login', module: require('./routes/loginRoutes') },
 ];
 
 // Database connection function

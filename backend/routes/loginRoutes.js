@@ -8,7 +8,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/userModel");
 dotenv.config({ path: "config.env" });
 
-router.post("/login", loginValidation, async (req, res) => {
+router.post("/signup", async (req, res) => {
     try {
         const { email, password } = req.body;
 
