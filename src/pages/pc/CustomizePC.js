@@ -1,6 +1,6 @@
 import React from 'react';
-import PCCustomizer from '../components/PCCustomizer';
-import Header from '../components/Header';
+import PCCustomizer from '../../components/pc/PCCustomizer';
+import Header from '../../components/Header';
 
 const CustomizePC = () => {
   return (

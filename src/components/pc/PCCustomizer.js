@@ -17,9 +17,9 @@ const PCCustomizer = () => {
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <div className="flex">
             <div className="w-1/2 bg-white flex items-center justify-center p-8">
-              <img 
-                src="/images/pc-build.jpeg" 
-                alt="Custom PC Build" 
+              <img
+                src="/images/pc-build.jpeg"
+                alt="Custom PC Build"
                 className="max-w-full max-h-[400px] object-contain"
               />
             </div>

@@ -25,26 +25,38 @@ const LaptopSchema = new mongoose.Schema({
 const Laptop = mongoose.model('Laptop', LaptopSchema);
 
 app.get('/api/laptops', async (req, res) => {
-  const { os, brand, screenSize, price, processor, ram } = req.query;
+  const { os, brand, price, processor, ram, screenSize } = req.query;
   const filter = {};
 
-  if (os) filter.os = os;
+  if (os) filter.os = os.toLowerCase();
   if (brand) filter.brand = brand;
-  if (screenSize) filter.screenSize = screenSize;
+  if (processor) filter['specs.processor'] = { $regex: processor, $options: 'i' };
+  if (ram) filter['specs.ram'] = ram + ' GB';
   if (price) {
     const [min, max] = price.split('-');
-    filter.price = { $gte: parseInt(min), $lte: parseInt(max) };
+    filter['specs.price'] = { $gte: parseInt(min), $lte: max ? parseInt(max) : Number.MAX_SAFE_INTEGER };
   }
-  if (processor) filter.processor = processor;
-  if (ram) filter.ram = parseInt(ram);
+  if (screenSize) {
+    const size = parseFloat(screenSize);
+    if (size === 17) {
+      filter['specs.screenSize'] = { $gte: size };
+    } else {
+      filter['specs.screenSize'] = { $lt: size };
+    }
+  }
 
   try {
-    const laptops = await Laptop.find(filter);
+    console.log(filter)
+    // const laptops = await Laptop.find(filter);
+    const laptops = await Laptop.find();
     res.json(laptops);
   } catch (error) {
+    console.error('Error fetching laptops:', error);
     res.status(500).json({ message: 'Error fetching laptops' });
   }
 });
+
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

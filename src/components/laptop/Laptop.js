@@ -4,7 +4,6 @@ import { FiHeart } from 'react-icons/fi';
 const Laptop = ({ laptop }) => {
   // Default image URL if no image is available
   const defaultImageUrl = '/images/dell-xps13.jpeg';
-  console.log(defaultImageUrl);
 
   return (
     <div className="bg-gray-800 rounded-lg overflow-hidden">
