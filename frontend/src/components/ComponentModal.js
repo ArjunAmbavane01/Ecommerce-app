@@ -35,4 +35,6 @@ const ComponentModal = ({ component, platform, setSelectedComponents, closeModal
   );
 };
 
+
+
 export default ComponentModal;
