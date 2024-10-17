@@ -3,9 +3,6 @@ import { useLocation } from 'react-router-dom';
 import Laptop from '../../components/laptop/Laptop';
 import Header from '../../components/Header';
 
-// ADD RATING LOW INSTEAD OF SCREEN
-// ADD PRICE FOR MAX LIMIT
-
 const FilterButton = ({ label, options, value, onChange }) => (
   <select
     value={value}
@@ -52,8 +49,8 @@ const LaptopStore = () => {
       const queryParams = new URLSearchParams(
         Object.entries(filters).filter(([_, value]) => value !== '')
       );
-      const response = await fetch(`http://localhost:5000/api/laptops?${queryParams.toString()}`);
-      console.log(`http://localhost:5000/api/laptops?${queryParams.toString()}`)
+      const response = await fetch(`http://localhost:4000/api/laptops?${queryParams.toString()}`);
+      console.log(`http://localhost:4000/api/laptops?${queryParams.toString()}`)
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -92,9 +89,9 @@ const LaptopStore = () => {
           />
           <FilterButton
             label="Price"
-            options={['0-30000', '30000-50000', '50000+']}
+            options={['20,000 and less', '40,000 and less','60,000 and less','80,000 and less','1,00,000 and less']}
             value={filters.price}
-            onChange={(value) => handleFilterChange('price', value)}
+            onChange={(value) => handleFilterChange('price', value === '20,000 and less' ? '20000' : value === '40,000 and less' ? '40000' : value === '60,000 and less' ? '60000' : value === '80,000 and less' ? '80000' : value === '1,00,000 and less' ? '100000' : '300000')}
           />
           <FilterButton
             label="Processor Name"
@@ -109,10 +106,10 @@ const LaptopStore = () => {
             onChange={(value) => handleFilterChange('ram', value)}
           />
           <FilterButton
-            label="Screen Size"
-            options={['12.99', '14.99', '16.99', '17']}
-            value={filters.screenSize}
-            onChange={(value) => handleFilterChange('screenSize', value)}
+            label="Rating"
+            options={['1 and above','2 and above','3 and above', '4 and above']}
+            value={filters.rating}
+            onChange={(value) => handleFilterChange('rating', value === '3 and above' ? '3' : '4')}
           />
         </div>
         {error && <p className="text-red-500 mb-4">{error}</p>}
