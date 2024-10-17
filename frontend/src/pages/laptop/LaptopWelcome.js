@@ -6,7 +6,7 @@ const OSSection = ({ os, image }) => {
   const navigate = useNavigate();
 
   const handleOSClick = () => {
-    navigate('/laptops/store', { state: { filters: { os: os.toLowerCase() } } });
+    navigate('/laptops/store', { state: { filters: { os} } });
   };
 
   return (
@@ -72,7 +72,7 @@ const LaptopWelcome = () => {
         <section className="mb-8">
         <h2 className="text-2xl font-bold mb-4">Choose Your OS</h2>
           <div className="flex h-48 rounded-lg overflow-hidden">
-            <OSSection os="macOS" image="/images/mac.png" />
+            <OSSection os="MacOS" image="/images/mac.png" />
             <OSSection os="Windows" image="/images/windows.png" />
             <OSSection os="ChromeOS" image="/images/chrome.png" />
           </div>

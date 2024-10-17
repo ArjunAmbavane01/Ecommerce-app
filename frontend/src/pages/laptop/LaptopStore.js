@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import Laptop from '../../components/laptop/Laptop';
 import Header from '../../components/Header';
+import { Loader2 } from 'lucide-react'; 
 
 const FilterButton = ({ label, options, value, onChange }) => (
   <select
@@ -21,13 +22,14 @@ const FilterButton = ({ label, options, value, onChange }) => (
 const LaptopStore = () => {
   const [laptops, setLaptops] = useState([]);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [filters, setFilters] = useState({
     os: '',
     brand: '',
     price: '',
     processor: '',
     ram: '',
-    screenSize: '',
+    rating: '',
   });
   const location = useLocation();
 
@@ -37,34 +39,54 @@ const LaptopStore = () => {
     }
   }, [location.state]);
 
-  useEffect(() => {
-    const hasValidFilters = Object.values(filters).some(value => value !== '');
-    if (hasValidFilters) {
-      fetchLaptops();
-    }
-  }, [filters]);
-
-  const fetchLaptops = async () => {
+  const fetchLaptops = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
     try {
       const queryParams = new URLSearchParams(
         Object.entries(filters).filter(([_, value]) => value !== '')
       );
-      const response = await fetch(`http://localhost:4000/api/laptops?${queryParams.toString()}`);
-      console.log(`http://localhost:4000/api/laptops?${queryParams.toString()}`)
+      const response = await fetch(`http://localhost:4000/api/laptop/getLaptopsByFilters?${queryParams.toString()}`);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      const data = await response.json();
-      setLaptops(data);
-      setError(null);
+      const result = await response.json();
+      if (result.success && Array.isArray(result.data)) {
+        setLaptops(result.data);
+      } else {
+        throw new Error('Invalid data format received from server');
+      }
     } catch (error) {
       console.error('Error fetching laptops:', error);
       setError('Failed to fetch laptops. Please try again later.');
+      setLaptops([]);
+    } finally {
+      setIsLoading(false);
     }
-  };
+  }, [filters]);
+
+  useEffect(() => {
+    const hasValidFilters = Object.values(filters).some(value => value !== '');
+    if (hasValidFilters) {
+      fetchLaptops();
+    } else {
+      setLaptops([]);
+    }
+  }, [filters, fetchLaptops]);
 
   const handleFilterChange = (filterName, value) => {
     setFilters(prevFilters => ({ ...prevFilters, [filterName]: value }));
+  };
+
+  const getPriceValue = (option) => {
+    const priceMap = {
+      '20,000 and less': '20000',
+      '40,000 and less': '40000',
+      '60,000 and less': '60000',
+      '80,000 and less': '80000',
+      '1,00,000 and less': '100000'
+    };
+    return priceMap[option] || '';
   };
 
   return (
@@ -77,7 +99,7 @@ const LaptopStore = () => {
         <div className="flex flex-wrap gap-4 mb-6">
           <FilterButton
             label="OS"
-            options={['macOS', 'Windows', 'ChromeOS']}
+            options={['MacOS', 'Windows']}
             value={filters.os}
             onChange={(value) => handleFilterChange('os', value)}
           />
@@ -89,9 +111,9 @@ const LaptopStore = () => {
           />
           <FilterButton
             label="Price"
-            options={['20,000 and less', '40,000 and less','60,000 and less','80,000 and less','1,00,000 and less']}
-            value={filters.price}
-            onChange={(value) => handleFilterChange('price', value === '20,000 and less' ? '20000' : value === '40,000 and less' ? '40000' : value === '60,000 and less' ? '60000' : value === '80,000 and less' ? '80000' : value === '1,00,000 and less' ? '100000' : '300000')}
+            options={['20,000 and less', '40,000 and less', '60,000 and less', '80,000 and less', '1,00,000 and less']}
+            value={filters.price ? `${filters.price} and less` : ''}
+            onChange={(value) => handleFilterChange('price', getPriceValue(value))}
           />
           <FilterButton
             label="Processor Name"
@@ -107,19 +129,25 @@ const LaptopStore = () => {
           />
           <FilterButton
             label="Rating"
-            options={['1 and above','2 and above','3 and above', '4 and above']}
-            value={filters.rating}
-            onChange={(value) => handleFilterChange('rating', value === '3 and above' ? '3' : '4')}
+            options={['1 and above', '2 and above', '3 and above', '4 and above']}
+            value={filters.rating ? `${filters.rating} and above` : ''}
+            onChange={(value) => handleFilterChange('rating', value.split(' ')[0])}
           />
         </div>
         {error && <p className="text-red-500 mb-4">{error}</p>}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {laptops && laptops.length > 0 ? (
-            laptops.map((laptop) => <Laptop key={laptop._id} laptop={laptop} />)
-          ) : (
-            <p className="text-white col-span-3 text-center">No laptops found.</p>
-          )}
-        </div>
+        {isLoading ? (
+          <div className="flex justify-center items-center h-64">
+            <Loader2 className="w-12 h-12 animate-spin text-blue-500" />
+          </div>
+        ) : laptops.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {laptops.map((laptop) => (
+              <Laptop key={laptop._id} laptop={laptop} />
+            ))}
+          </div>
+        ) : (
+          <p className="text-white text-center">No laptops found.</p>
+        )}
       </main>
     </div>
   );

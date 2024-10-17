@@ -1,26 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FiHeart } from 'react-icons/fi';
+import defaultLaptopImage from '../../assets/default-laptop.png';
 
 const Laptop = ({ laptop }) => {
-  // Default image URL if no image is available
-  const defaultImageUrl = '/images/dell-xps13.jpeg';
+  const [imageError, setImageError] = useState(false);
+
+  const handleImageError = () => {
+    setImageError(true);
+  };
 
   return (
     <div className="bg-gray-800 rounded-lg overflow-hidden">
       <img 
-        // src={laptop.images && laptop.images.length > 0 ? laptop.images[0] : defaultImageUrl} 
-        src={defaultImageUrl} 
-        alt={laptop.model || 'Laptop'} 
+        src={imageError ? defaultLaptopImage : laptop.photoURL} 
         className="w-full h-48 object-cover" 
+        onError={handleImageError}
+        alt={laptop.name || 'Laptop'}
       />
       <div className="p-4">
         <h3 className="text-white text-lg font-semibold mb-2">
-          {laptop.brand || 'Unknown'} {laptop.model || 'Model'}
+          {laptop.name || 'Model'}
         </h3>
         <p className="text-gray-300 text-sm mb-4">
-          {laptop.processor?.type || 'N/A'} {laptop.processor?.model || 'N/A'}, 
-          {laptop.ram?.size || 'N/A'}GB RAM, 
-          {laptop.storage?.capacity || 'N/A'}GB {laptop.storage?.type || 'N/A'}
+          {laptop.processor || 'N/A'}{' '}
+          {laptop.ramSize ? `${laptop.ramSize} RAM` : 'N/A'}{' '}
+          {laptop.storageSize || 'N/A'}
         </p>
         <div className="flex justify-between items-center">
           <div>
