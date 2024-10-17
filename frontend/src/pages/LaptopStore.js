@@ -3,6 +3,9 @@ import { useLocation } from 'react-router-dom';
 import Laptop from '../../components/laptop/Laptop';
 import Header from '../../components/Header';
 
+// ADD RATING LOW INSTEAD OF SCREEN
+// ADD PRICE FOR MAX LIMIT
+
 const FilterButton = ({ label, options, value, onChange }) => (
   <select
     value={value}

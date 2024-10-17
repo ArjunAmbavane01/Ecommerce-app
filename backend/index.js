@@ -20,6 +20,7 @@ app.use(cors({
 // Dynamic routes
 const routes = [
   { path: '/api/login', module: require('./routes/loginRoutes') },
+  { path: '/api/laptop', module: require('./routes/laptopRoutes') },
 ];
 
 // Database connection function
