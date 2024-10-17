@@ -21,9 +21,9 @@ router.post('/addLaptop', async (req, res) => {
         });
 
         const savedLaptop = await newLaptop.save();
-        res.status(201).json({ success: true, data: savedLaptop });
+        return res.status(201).json({ success: true, data: savedLaptop });
     } catch (error) {
-        res.status(500).json({ success: false, message: error.message });
+        return res.status(500).json({ success: false, error: error.message });
     }
 });
 
@@ -41,9 +41,9 @@ router.get('/getLaptopsByFilters', async (req, res) => {
 
         const laptops = await Laptop.find(filter);
 
-        res.status(200).json({ success: true, data: laptops });
+        return res.status(200).json({ success: true, data: laptops });
     } catch (error) {
-        res.status(500).json({ success: false, message: error.message });
+        return res.status(500).json({ success: false, error: error.message });
     }
 });
 
@@ -58,9 +58,9 @@ router.put('/updateLaptop/:id', async (req, res) => {
             return res.status(404).json({ success: false, message: 'Laptop not found' });
         }
 
-        res.status(200).json({ success: true, data: updatedLaptop });
+        return res.status(200).json({ success: true, data: updatedLaptop });
     } catch (error) {
-        res.status(500).json({ success: false, message: error.message });
+        return res.status(500).json({ success: false, error: error.message });
     }
 });
 
@@ -72,9 +72,9 @@ router.delete('/deleteLaptop/:id', async (req, res) => {
             return res.status(404).json({ success: false, message: 'Laptop not found' });
         }
 
-        res.status(200).json({ success: true, message: 'Laptop deleted successfully' });
+        return res.status(200).json({ success: true});
     } catch (error) {
-        res.status(500).json({ success: false, message: error.message });
+        return res.status(500).json({ success: false, error: error.message });
     }
 });
 
