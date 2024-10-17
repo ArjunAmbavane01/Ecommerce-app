@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const Laptop = require('../models/laptop');
+const Laptop = require('../models/laptopModel');
 
 router.post('/addLaptop', async (req, res) => {
     try {
-        const { name, brand, processor, ramSize, storageSize, price, rating, quantity, wishlist, photoURL } = req.body;
+        const { name, brand, processor, ramSize, storageSize, price, os, rating, quantity, wishlist, photoURL } = req.body;
 
         const newLaptop = new Laptop({
             name,
@@ -13,6 +13,7 @@ router.post('/addLaptop', async (req, res) => {
             ramSize,
             storageSize,
             price,
+            os,
             rating,
             quantity,
             wishlist,
