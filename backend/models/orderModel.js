@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   items: [{
-    itemId: { type: mongoose.Schema.Types.ObjectId, ref: 'Laptop' }, 
+    item_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Laptop' }, 
     quantity: { type: Number, default: 1 },
     price: { type: Number, required: true }
   }],
