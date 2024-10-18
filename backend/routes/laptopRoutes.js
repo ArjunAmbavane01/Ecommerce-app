@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const Laptop = require('../models/laptopModel');
 
+const requireAuth = require('../middleware/reqAuth');
+router.use(requireAuth);
+
 router.post('/addLaptop', async (req, res) => {
     try {
         const { name, brand, processor, ramSize, storageSize, price, os, rating, quantity, wishlist, photoURL } = req.body;
