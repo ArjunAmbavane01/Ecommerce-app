@@ -1,0 +1,110 @@
+[
+    {
+        "username": "john_doe",
+        "name": "John Doe",
+        "email": "john@example.com",
+        "password": "password123",
+        "phNo": 1234567890,
+        "cart": [
+            {
+                "item_id": "650c0edcb85b6f7e9f6d5a2a"
+            }
+        ],
+        "purchaseHistory": [
+            {
+                "item_id": "650c0eeeb85b6f7e9f6d5a2b",
+                "date": "2024-10-01T00:00:00Z",
+                "price": 199.99
+            }
+        ],
+        "wishlist": [
+            "650c0f03b85b6f7e9f6d5a2c"
+        ]
+    },
+    {
+        "username": "jane_smith",
+        "name": "Jane Smith",
+        "email": "jane@example.com",
+        "password": "password456",
+        "phNo": 9876543210,
+        "cart": [
+            {
+                "item_id": "650c0f18b85b6f7e9f6d5a2d"
+            }
+        ],
+        "purchaseHistory": [
+            {
+                "item_id": "650c0f28b85b6f7e9f6d5a2e",
+                "date": "2024-09-29T00:00:00Z",
+                "price": 149.99
+            }
+        ],
+        "wishlist": [
+            "650c0f3ab85b6f7e9f6d5a2f",
+            "650c0f44b85b6f7e9f6d5a30"
+        ]
+    },
+    {
+        "username": "david_lee",
+        "name": "David Lee",
+        "email": "david@example.com",
+        "password": "password789",
+        "phNo": 1122334455,
+        "cart": [
+            {
+                "item_id": "650c0f5bb85b6f7e9f6d5a31"
+            },
+            {
+                "item_id": "650c0f68b85b6f7e9f6d5a32"
+            }
+        ],
+        "purchaseHistory": [
+            {
+                "item_id": "650c0f7ab85b6f7e9f6d5a33",
+                "date": "2024-10-02T00:00:00Z",
+                "price": 99.99
+            }
+        ],
+        "wishlist": []
+    },
+    {
+        "username": "emma_wilson",
+        "name": "Emma Wilson",
+        "email": "emma@example.com",
+        "password": "password101",
+        "phNo": 5566778899,
+        "cart": [],
+        "purchaseHistory": [
+            {
+                "item_id": "650c0f91b85b6f7e9f6d5a34",
+                "date": "2024-09-30T00:00:00Z",
+                "price": 59.99
+            },
+            {
+                "item_id": "650c0fa4b85b6f7e9f6d5a35",
+                "date": "2024-09-25T00:00:00Z",
+                "price": 39.99
+            }
+        ],
+        "wishlist": [
+            "650c0fb5b85b6f7e9f6d5a36"
+        ]
+    },
+    {
+        "username": "oliver_brown",
+        "name": "Oliver Brown",
+        "email": "oliver@example.com",
+        "password": "password202",
+        "phNo": 4455667788,
+        "cart": [
+            {
+                "item_id": "650c0fc9b85b6f7e9f6d5a37"
+            }
+        ],
+        "purchaseHistory": [],
+        "wishlist": [
+            "650c0fdbb85b6f7e9f6d5a38",
+            "650c0febb85b6f7e9f6d5a39"
+        ]
+    }
+]

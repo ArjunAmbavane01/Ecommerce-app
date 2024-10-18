@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Order = require('../models/orderModel');
-const requireAuth = require('../middleware/requireAuth');
+const requireAuth = require('../middleware/reqAuth');
 
 router.post('/addCartOrders', requireAuth, async (req, res) => {
     try {
