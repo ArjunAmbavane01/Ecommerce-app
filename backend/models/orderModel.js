@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 const orderSchema = new mongoose.Schema({
   user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   items: [{
-    item_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Laptop' }, 
-    quantity: { type: Number, default: 1 },
+    item_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Laptop' },
     price: { type: Number, required: true }
   }],
   totalAmount: { type: Number, required: true },
