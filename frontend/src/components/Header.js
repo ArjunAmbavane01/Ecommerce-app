@@ -21,7 +21,6 @@ export default function Header() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Handle login or signup logic here
     console.log('Form submitted', { email, password, confirmPassword, keepSignedIn })
     setIsModalOpen(false)
   }

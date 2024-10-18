@@ -89,6 +89,32 @@ const LaptopStore = () => {
     return priceMap[option] || '';
   };
 
+  const addToCart = async (laptopId) => {
+    try {
+      const response = await fetch('http://localhost:4000/api/laptop/addToCartProduct', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ _id: laptopId }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      if (result.success) {
+        alert('Product added to cart successfully!');
+      } else {
+        throw new Error('Failed to add product to cart');
+      }
+    } catch (error) {
+      console.error('Error adding product to cart:', error);
+      alert('Failed to add product to cart. Please try again later.');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <Header />
@@ -134,6 +160,7 @@ const LaptopStore = () => {
             onChange={(value) => handleFilterChange('rating', value.split(' ')[0])}
           />
         </div>
+
         {error && <p className="text-red-500 mb-4">{error}</p>}
         {isLoading ? (
           <div className="flex justify-center items-center h-64">
@@ -142,7 +169,7 @@ const LaptopStore = () => {
         ) : laptops.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {laptops.map((laptop) => (
-              <Laptop key={laptop._id} laptop={laptop} />
+              <Laptop key={laptop._id} laptop={laptop} onAddToCart={addToCart} />
             ))}
           </div>
         ) : (
