@@ -18,6 +18,7 @@ app.use(cors({
 const routes = [
   { path: '/api/login', module: require('./routes/loginRoutes') },
   { path: '/api/laptop', module: require('./routes/laptopRoutes') },
+  { path: '/api/order', module: require('./routes/orderRoutes') },
 ];
 
 const dbConnection = async () => {
@@ -35,3 +36,5 @@ dbConnection().then(() => {
     console.log(`Listening on: http://localhost:${PORT}`);
   });
 });
+
+validateToken
