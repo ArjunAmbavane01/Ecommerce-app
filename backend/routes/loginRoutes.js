@@ -62,4 +62,28 @@ router.post('/signup', async (req, res) => {
     }
 });
 
+router.get('/validateToken', async (req, res) => {
+    try {
+        const authHeader = req.headers.authorization; 
+
+        if (!authHeader || !authHeader.startsWith('Bearer ')) {
+            return res.status(400).json({ message: 'Authorization token is required' });
+        }
+
+        const token = authHeader.split(' ')[1]; 
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        const user_id = decoded._id;
+        const user = await User.findById(user_id);
+
+        if (user) {
+            return res.status(200).json({ data: user, success: true });
+        } else {
+            return res.status(200).json({ message: 'User not found', success: false });
+        }
+    } catch (error) {
+        return res.status(500).json({ message: 'Invalid token or error occurred', error: error.message });
+    }
+});
+
 module.exports = router;
