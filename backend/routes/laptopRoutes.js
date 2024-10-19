@@ -29,6 +29,7 @@ router.post('/addLaptop', async (req, res) => {
 
 router.get('/getLaptopsByFilters', async (req, res) => {
     try {
+        console.log(req.query)  
         const { brand, processor, ramSize, price, rating } = req.query;
 
         let filter = {};

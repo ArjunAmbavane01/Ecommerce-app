@@ -62,7 +62,7 @@ router.post('/signup', async (req, res) => {
     }
 });
 
-router.get('/validateToken', async (req, res) => {
+router.post('/validateToken', async (req, res) => {
     try {
         const authHeader = req.headers.authorization; 
 
