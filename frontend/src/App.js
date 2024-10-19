@@ -6,8 +6,10 @@ import Welcome from './pages/Welcome';
 import LaptopWelcome from './pages/laptop/LaptopWelcome';
 import LaptopStore from './pages/laptop/LaptopStore';
 import CustomizePC from './pages/pc/CustomizePC';
-import ShoppingCart from './pages/ShoppingCart';
-import PurchaseHistory from './pages/PurchaseHistory';
+import ShoppingCart from './pages/order/ShoppingCart';
+import PurchaseHistory from './pages/order/PurchaseHistory';
+import Checkout from './pages/order/Checkout'; 
+
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
             <Route path="/laptops/store" element={<LaptopStore />} />
             <Route path="/cart" element={<ShoppingCart />} />
             <Route path="/purchase-history" element={<PurchaseHistory />} />
+            <Route path="/checkout" element={<Checkout />} />
             <Route path="/customize-pc" element={<CustomizePC />} />
           </Routes>
         </Router>
