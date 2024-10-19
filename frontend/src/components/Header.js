@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FiMenu, FiSearch, FiMapPin, FiUser, FiShoppingCart, FiX } from 'react-icons/fi'
+import { useAuth } from '../contexts/AuthContext'
 
 export default function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -8,8 +9,10 @@ export default function Header() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [keepSignedIn, setKeepSignedIn] = useState(false)
+  const [name, setName] = useState('')
+  const [phNo, setPhNo] = useState('')
   const navigate = useNavigate()
+  const { user, login, signup, logout } = useAuth()
 
   const handleCartClick = () => {
     navigate('/cart')
@@ -19,10 +22,35 @@ export default function Header() {
     setIsModalOpen(!isModalOpen)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('Form submitted', { email, password, confirmPassword, keepSignedIn })
-    setIsModalOpen(false)
+    if (isLogin) {
+      const success = await login(email, password)
+      if (success) {
+        setIsModalOpen(false)
+      } else {
+        // Show error message
+        alert('Login failed. Please check your credentials.')
+      }
+    } else {
+      if (password !== confirmPassword) {
+        alert('Passwords do not match')
+        return
+      }
+      const success = await signup(name, email, email, password, phNo)
+      if (success) {
+        setIsModalOpen(false)
+        alert('Signup successful! Please log in.')
+        setIsLogin(true)
+      } else {
+        // Show error message
+        alert('Signup failed. Please try again.')
+      }
+    }
+  }
+
+  const handleLogout = () => {
+    logout()
   }
 
   return (
@@ -41,18 +69,17 @@ export default function Header() {
           <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
         </div>
         <div className="flex items-center">
-          <div className="flex items-center mr-4">
+          {/* <div className="flex items-center mr-4">
             <FiMapPin className="mr-2" />
             <span>Pune, 411008</span>
-          </div>
-          <button className="mr-4" onClick={toggleModal}>
-            <FiUser size={24} />
-          </button>
+          </div> */}
+            <button className="flex items-center mr-4" onClick={user ? handleLogout : toggleModal}>
+              <FiUser size={24} />
+              {user ? 'Logout' : 'Login'}
+            </button>
+            
           <button className="relative" onClick={handleCartClick}>
             <FiShoppingCart size={24} />
-            <span className="absolute -top-1 -right-1 bg-green-500 text-xs rounded-full h-4 w-4 flex items-center justify-center">
-              0
-            </span>
           </button>
         </div>
       </header>
@@ -68,23 +95,53 @@ export default function Header() {
             </button>
             <div className="flex justify-center mb-6">
               <button
-                className={`px-4 py-2 ${
-                  isLogin ? 'text-white border-b-2 border-green-500' : 'text-gray-400'
-                }`}
+                className={`px-4 py-2 ${isLogin ? 'text-white border-b-2 border-green-500' : 'text-gray-400'
+                  }`}
                 onClick={() => setIsLogin(true)}
               >
                 Login
               </button>
               <button
-                className={`px-4 py-2 ${
-                  !isLogin ? 'text-white border-b-2 border-green-500' : 'text-gray-400'
-                }`}
+                className={`px-4 py-2 ${!isLogin ? 'text-white border-b-2 border-green-500' : 'text-gray-400'
+                  }`}
                 onClick={() => setIsLogin(false)}
               >
                 Create Account
               </button>
             </div>
             <form onSubmit={handleSubmit} className="space-y-4">
+              {!isLogin && (
+                <>
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-400 mb-1">
+                      Your name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="w-full p-2 rounded-md bg-gray-800 text-white border border-gray-700 focus:border-green-500 focus:ring-1 focus:ring-green-500"
+                      placeholder="John Doe"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="phNo" className="block text-sm font-medium text-gray-400 mb-1">
+                      Phone number
+                    </label>
+                    <input
+                      type="tel"
+                      id="phNo"
+                      value={phNo}
+                      onChange={(e) => setPhNo(e.target.value)}
+                      className="w-full p-2 rounded-md bg-gray-800 text-white border border-gray-700 focus:border-green-500 focus:ring-1 focus:ring-green-500"
+                      placeholder="1234567890"
+                      required
+                    />
+                  </div>
+                </>
+              )}
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-400 mb-1">
                   {isLogin ? 'Email ID or Phone number' : 'Your email'}
@@ -137,8 +194,6 @@ export default function Header() {
                   <input
                     type="checkbox"
                     id="keepSignedIn"
-                    checked={keepSignedIn}
-                    onChange={(e) => setKeepSignedIn(e.target.checked)}
                     className="mr-2"
                   />
                   <label htmlFor="keepSignedIn" className="text-sm text-gray-400">
@@ -161,7 +216,7 @@ export default function Header() {
                 type="submit"
                 className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition duration-300"
               >
-                {isLogin ? 'Continue' : 'Create an account'}
+                {isLogin ? 'Login' : 'Create an account'}
               </button>
             </form>
             <p className="mt-4 text-sm text-gray-400 text-center">

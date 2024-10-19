@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+import { CartProvider } from './contexts/CartContext';
 import Welcome from './pages/Welcome';
 import LaptopWelcome from './pages/laptop/LaptopWelcome';
 import LaptopStore from './pages/laptop/LaptopStore';
@@ -8,15 +10,19 @@ import ShoppingCart from './pages/ShoppingCart';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Welcome />} />
-        <Route path="/laptops" element={<LaptopWelcome />} />
-        <Route path="/laptops/store" element={<LaptopStore />} />
-        <Route path="/customize-pc" element={<CustomizePC />} />
-        <Route path="/cart" element={<ShoppingCart />} />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <CartProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Welcome />} />
+            <Route path="/laptops" element={<LaptopWelcome />} />
+            <Route path="/laptops/store" element={<LaptopStore />} />
+            <Route path="/cart" element={<ShoppingCart />} />
+            <Route path="/customize-pc" element={<CustomizePC />} />
+          </Routes>
+        </Router>
+      </CartProvider>
+    </AuthProvider>
   );
 }
 
