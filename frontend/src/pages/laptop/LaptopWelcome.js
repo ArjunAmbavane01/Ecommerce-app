@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
+import ProcessorSection from '../../components/laptop/ProcessorSection';
 
 const OSSection = ({ os, image }) => {
   const navigate = useNavigate();
@@ -36,26 +37,30 @@ const BrandSection = ({ brand, image }) => {
   );
 };
 
-const ScreenSizeSection = ({ size, label }) => {
-  const navigate = useNavigate();
+// const ProcessorSection = ({ processor }) => {
+//   const navigate = useNavigate();
 
-  const handleSizeClick = () => {
-    navigate('/laptops/store', { state: { filters: { screenSize: size } } });
-  };
+//   const handleProcessorClick = () => {
+//     navigate('/laptops/store', { state: { filters: { processor } } });
+//   };
 
-  return (
-    <div onClick={handleSizeClick} className="bg-gray-800 text-white p-4 rounded-lg flex flex-col items-center justify-center cursor-pointer">
-      <span className="text-sm mb-1">{label}</span>
-      <span className="text-2xl font-bold">{size}</span>
-    </div>
-  );
-};
+//   return (
+//     <div 
+//       onClick={handleProcessorClick} 
+//       className="relative h-40 rounded-lg overflow-hidden group cursor-pointer bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center"
+//     >
+//       <div className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+//         <span className="text-white text-xl font-semibold">{processor}</span>
+//       </div>
+//     </div>
+//   );
+// };
 
 const LaptopWelcome = () => {
   return (
     <div className="bg-black text-white">
       <Header />
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden mb-7">
         <div className="w-full h-80 flex items-center justify-between">
           <div className="absolute inset-0 bg-gradient-to-r from-[#e6d1b5] to-transparent z-0"></div>
           <div className="flex flex-col justify-center px-8 w-full z-10">
@@ -69,18 +74,18 @@ const LaptopWelcome = () => {
       </div>
       <main className="max-w-6xl mx-auto p-6">
 
-        <section className="mb-8">
-        <h2 className="text-2xl font-bold mb-4">Choose Your OS</h2>
-          <div className="flex h-48 rounded-lg overflow-hidden">
+        <section className="mb-10">
+        <h2 className="text-2xl font-bold mb-6">Choose Your OS</h2>
+          <div className="flex h-55 rounded-lg overflow-hidden">
             <OSSection os="MacOS" image="/images/mac.png" />
             <OSSection os="Windows" image="/images/windows.png" />
             <OSSection os="ChromeOS" image="/images/chrome.png" />
           </div>
         </section>
 
-        <section className="mb-8">
+        <section className="mb-10">
            <h2 className="text-2xl font-bold mb-4">Pick Your Laptop Brand</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 h-55 md:grid-cols-4 gap-4">
             <BrandSection brand="Apple" image="/images/apple-logo.webp" />
             <BrandSection brand="ASUS" image="/images/asus-logo.png" />
             <BrandSection brand="Lenovo" image="/images/lenovo-logo.png" />
@@ -88,15 +93,7 @@ const LaptopWelcome = () => {
           </div>
         </section>
 
-        <section className="mb-8">
-        <h2 className="text-2xl font-bold mb-4">Size Up Your Screen</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <ScreenSizeSection size="12.99" label="Up to" />
-            <ScreenSizeSection size="14.99" label="13&quot; to" />
-            <ScreenSizeSection size="16.99" label="15&quot; to" />
-            <ScreenSizeSection size="17" label="Above" />
-          </div>
-        </section>
+        <ProcessorSection />
         
       </main>
     </div>

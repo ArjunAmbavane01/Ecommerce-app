@@ -7,6 +7,7 @@ import LaptopWelcome from './pages/laptop/LaptopWelcome';
 import LaptopStore from './pages/laptop/LaptopStore';
 import CustomizePC from './pages/pc/CustomizePC';
 import ShoppingCart from './pages/ShoppingCart';
+import PurchaseHistory from './pages/PurchaseHistory';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/laptops" element={<LaptopWelcome />} />
             <Route path="/laptops/store" element={<LaptopStore />} />
             <Route path="/cart" element={<ShoppingCart />} />
+            <Route path="/purchase-history" element={<PurchaseHistory />} />
             <Route path="/customize-pc" element={<CustomizePC />} />
           </Routes>
         </Router>
