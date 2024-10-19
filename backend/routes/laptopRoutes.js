@@ -30,15 +30,18 @@ router.post('/addLaptop', async (req, res) => {
 router.get('/getLaptopsByFilters', async (req, res) => {
     try {
         console.log(req.query)  
-        const { brand, processor, ramSize, price, rating } = req.query;
+        const { os, brand, processor, ramSize, price, rating } = req.query;
 
         let filter = {};
 
+        if (os) filter.os = os;
         if (brand) filter.brand = brand;
         if (processor) filter.processor = processor;
         if (ramSize) filter.ramSize = ramSize;
         if (price) filter.price = { $lte: price }; 
         if (rating) filter.rating = { $gte: rating }; 
+
+        console.log(filter)
 
         const laptops = await Laptop.find(filter);
 

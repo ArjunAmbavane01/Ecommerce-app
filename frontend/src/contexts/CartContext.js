@@ -7,6 +7,10 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const { user } = useAuth();
 
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
   useEffect(() => {
     if (user) {
       fetchCartItems();
@@ -17,7 +21,7 @@ export const CartProvider = ({ children }) => {
 
   const fetchCartItems = async () => {
     try {
-      const response = await fetch('http://localhost:4000/api/order/getCartProducts', {
+      const response = await fetch('http://localhost:4000/api/product/getCartProducts', {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -35,10 +39,10 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = async (productId) => {
     if (!user) {
-      return false; // User not authenticated
+      return false;
     }
     try {
-      const response = await fetch(`http://localhost:4000/order/addToCartProduct/${productId}`, {
+      const response = await fetch(`http://localhost:4000/api/product/addToCartProduct/${productId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -48,7 +52,7 @@ export const CartProvider = ({ children }) => {
       if (response.ok) {
         const data = await response.json();
         if (data.success) {
-          await fetchCartItems(); // Refresh cart items
+          await fetchCartItems();
           return true;
         }
       }
@@ -58,10 +62,41 @@ export const CartProvider = ({ children }) => {
     return false;
   };
 
+  const removeFromCart = async (productId) => {
+    try {
+      const response = await fetch(`http://localhost:4000/api/product/removeFromCart/${productId}`, {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success) {
+          await fetchCartItems();
+          return true;
+        }
+      }
+    } catch (error) {
+      console.error('Error removing item from cart:', error);
+    }
+    return false;
+  };
+
+  const calculateOrderSummary = () => {
+    const subtotal = cartItems.reduce((sum, item) => sum + item.price, 0);
+    const tax = subtotal * 0.08;
+    const total = subtotal + tax;
+    return { subtotal, tax, total };
+  };
+
   const value = {
     cartItems,
     addToCart,
-    fetchCartItems
+    clearCart,
+    removeFromCart,
+    fetchCartItems,
+    calculateOrderSummary
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import Laptop from '../../components/laptop/Laptop';
 import Header from '../../components/Header';
-import { Loader2 } from 'lucide-react'; 
+import { Loader2, Filter } from 'lucide-react'; 
 
 const FilterButton = ({ label, options, value, onChange }) => (
   <select
@@ -46,7 +46,14 @@ const LaptopStore = () => {
       const queryParams = new URLSearchParams(
         Object.entries(filters).filter(([_, value]) => value !== '')
       );
-      const response = await fetch(`http://localhost:4000/api/laptop/getLaptopsByFilters?${queryParams.toString()}`);
+      const queryString = queryParams.toString();
+      const url = queryString 
+        ? `http://localhost:4000/api/laptop/getLaptopsByFilters?${queryString}` 
+        : 'http://localhost:4000/api/laptop/getLaptopsByFilters';
+      
+      console.log('Fetching laptops from:', url);
+      const response = await fetch(url);
+      
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -66,13 +73,8 @@ const LaptopStore = () => {
   }, [filters]);
 
   useEffect(() => {
-    const hasValidFilters = Object.values(filters).some(value => value !== '');
-    if (hasValidFilters) {
-      fetchLaptops();
-    } else {
-      setLaptops([]);
-    }
-  }, [filters, fetchLaptops]);
+    fetchLaptops();
+  }, [fetchLaptops]);
 
   const handleFilterChange = (filterName, value) => {
     setFilters(prevFilters => ({ ...prevFilters, [filterName]: value }));
@@ -115,10 +117,21 @@ const LaptopStore = () => {
     }
   };
 
+  const resetFilters = () => {
+    setFilters({
+      os: '',
+      brand: '',
+      price: '',
+      processor: '',
+      ram: '',
+      rating: '',
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <Header />
-      <main className="max-w-6xl mx-auto p-6">
+      <main className="max-w-7xl mx-auto p-6">
         <h1 className="text-3xl font-bold text-white mb-6">
           Laptops ({laptops.length})
         </h1>
@@ -159,6 +172,12 @@ const LaptopStore = () => {
             value={filters.rating ? `${filters.rating} and above` : ''}
             onChange={(value) => handleFilterChange('rating', value.split(' ')[0])}
           />
+          <button
+            onClick={resetFilters}
+            className="text-sm bg-red-600 text-white px-3 py-2 rounded-md hover:bg-red-700 transition-colors flex item-center space-between"
+          >
+            Reset    <Filter className='text-sm ml-2'/>
+          </button>
         </div>
 
         {error && <p className="text-red-500 mb-4">{error}</p>}

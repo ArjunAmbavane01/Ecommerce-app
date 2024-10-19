@@ -68,10 +68,10 @@ export default function AuthButtons() {
           {user ? user.name || 'User' : 'Login'}
         </button>
         {user && showUserInfo && (
-          <div className="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-10">
+          <div className="absolute right-0 mt-3 w-52 bg-white rounded-md overflow-hidden shadow-xl z-10">
             <div className="px-4 py-2">
               <p className="text-sm font-medium text-gray-900">Logged in as:</p>
-              <p className="text-sm text-gray-500">{user.name || user.username}</p>
+              <p className="text-sm text-gray-500">{user.username}</p>
             </div>
             <button
               onClick={handleLogout}

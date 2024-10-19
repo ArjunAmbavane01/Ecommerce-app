@@ -23,9 +23,11 @@ router.post("/signin", async (req, res) => {
         };
 
         const token = createToken(user._id.toString());
-        const _id = user._id;
-
-        return res.status(200).json({ data: { _id, token }, success: true });
+        
+        return res.status(200).json({
+            data: { _id: user._id, token, name: user.name, username: user.username },
+            success: true
+        });
     } catch (error) {
         return res.status(500).json({ error: "An internal server error occurred while logging in: " + error.message, success: false });
     }
