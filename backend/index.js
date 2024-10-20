@@ -22,6 +22,17 @@ const routes = [
   { path: '/api/user', module: require('./routes/userRoutes') },
 ];
 
+const laptopSalesData = [
+  { name: "Laptop A", sales: 120 },
+  { name: "Laptop B", sales: 300 },
+  { name: "Laptop C", sales: 80 },
+  { name: "Laptop D", sales: 240 }
+];
+
+app.get('/api/laptop-sales', (req, res) => {
+  res.json(laptopSalesData);
+});
+
 const dbConnection = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI);
