@@ -29,7 +29,7 @@ router.post('/addLaptop', async (req, res) => {
 
 router.get('/getLaptopsByFilters', async (req, res) => {
     try {
-        console.log(req.query)  
+        console.log(req.query)
         const { os, brand, processor, ramSize, price, rating } = req.query;
 
         let filter = {};
@@ -38,8 +38,8 @@ router.get('/getLaptopsByFilters', async (req, res) => {
         if (brand) filter.brand = brand;
         if (processor) filter.processor = processor;
         if (ramSize) filter.ramSize = ramSize;
-        if (price) filter.price = { $lte: price }; 
-        if (rating) filter.rating = { $gte: rating }; 
+        if (price) filter.price = { $lte: price };
+        if (rating) filter.rating = { $gte: rating };
 
         console.log(filter)
 
@@ -54,8 +54,8 @@ router.get('/getLaptopsByFilters', async (req, res) => {
 router.put('/updateLaptop/:id', async (req, res) => {
     try {
         const updatedLaptop = await Laptop.findByIdAndUpdate(req.params.id, req.body, {
-            new: true, 
-            runValidators: true, 
+            new: true,
+            runValidators: true,
         });
 
         if (!updatedLaptop) {
@@ -76,10 +76,23 @@ router.delete('/deleteLaptop/:id', async (req, res) => {
             return res.status(404).json({ success: false, message: 'Laptop not found' });
         }
 
-        return res.status(200).json({ success: true});
+        return res.status(200).json({ success: true });
     } catch (error) {
         return res.status(500).json({ success: false, error: error.message });
     }
 });
+
+router.get('/:id', async (req, res) => {
+    try {
+        const laptop = await Laptop.findById(req.params.id);
+        if (!laptop) {
+            return res.status(404).json({ success: false, message: 'Laptop not found' });
+        }
+        res.json({ success: true, laptop });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+});
+
 
 module.exports = router;

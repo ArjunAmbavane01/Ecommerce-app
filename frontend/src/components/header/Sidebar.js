@@ -20,8 +20,8 @@ export default function Sidebar({ isOpen, onClose }) {
                     <Laptop className="text-sm mr-3" />
                     Laptop Store
                 </Link>
-                <Link to="/wishlist" className="text-white hover:text-gray-300">
-                    <Heart  className="inline-block mr-1" />
+                <Link to="/wishlist" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-800">
+                    <Heart  className=" text-sm mr-3" />
                     Wishlist
                 </Link>
                 <Link to="/purchase-history" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-800" onClick={onClose}>

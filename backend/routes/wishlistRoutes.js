@@ -6,7 +6,7 @@ const requireAuth = require('../middleware/reqAuth');
 
 router.use(requireAuth);
 
-router.post('/wishlist/add/:id', async (req, res) => {
+router.post('/add/:id', async (req, res) => {
     try {
         const laptop_id = req.params.id;
         const user_id = req.id;
@@ -27,7 +27,7 @@ router.post('/wishlist/add/:id', async (req, res) => {
     }
 });
 
-router.post('/wishlist/remove/:id', async (req, res) => {
+router.post('/remove/:id', async (req, res) => {
     try {
         const laptop_id = req.params.id;
         const user_id = req.id;
@@ -48,25 +48,23 @@ router.post('/wishlist/remove/:id', async (req, res) => {
     }
 });
 
-router.get('/wishlist/getWishlist', async (req, res) => {
+router.get('/getWishlist', async (req, res) => {
     try {
         const user_id = req.id;
 
-        const user = await User.findById(user_id);
+        const user = await User.findById(user_id).populate('wishlist');
 
         if (!user) {
             return res.status(404).json({ success: false, message: 'User not found' });
         }
 
-        const laptops = await Laptop.find({ _id: { $in: user.wishlist } });
-
-        return res.status(200).json({ success: true, data: laptops });
+        return res.status(200).json({ success: true, data: user.wishlist });
     } catch (error) {
         return res.status(500).json({ success: false, error: error.message });
     }
 });
 
-router.get('/wishlist/check/:id', async (req, res) => {
+router.get('/check/:id', async (req, res) => {
     try {
         const laptop_id = req.params.id;
         const user_id = req.id;
@@ -86,4 +84,3 @@ router.get('/wishlist/check/:id', async (req, res) => {
 });
 
 module.exports = router;
-
