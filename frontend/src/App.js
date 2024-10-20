@@ -12,6 +12,7 @@ import Checkout from './pages/order/Checkout';
 import PurchaseHistory from './pages/PurchaseHistory';
 import Wishlist from './pages/Wishlist';
 import LaptopSalesChart from './components/laptop/LaptopSalesChart';
+import OrderStatsCharts from './components/OrderStatsCharts';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
               <Route path="/customize-pc" element={<CustomizePC />} />
               <Route path="/wishlist" element={<Wishlist />} />
               <Route path="/laptops/sales-chart" element={<LaptopSalesChart />} />
+              <Route path="/laptops/order-chart" element={<OrderStatsCharts />} />
             </Routes>
           </Router>
         </WishlistProvider>
