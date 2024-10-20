@@ -20,18 +20,8 @@ const routes = [
   { path: '/api/laptop', module: require('./routes/laptopRoutes') },
   { path: '/api/order', module: require('./routes/orderRoutes') },
   { path: '/api/user', module: require('./routes/userRoutes') },
+  { path: '/api/order/stats', module: require('./routes/stats/orderStatsRoutes') },
 ];
-
-const laptopSalesData = [
-  { name: "Laptop A", sales: 120 },
-  { name: "Laptop B", sales: 300 },
-  { name: "Laptop C", sales: 80 },
-  { name: "Laptop D", sales: 240 }
-];
-
-app.get('/api/laptop-sales', (req, res) => {
-  res.json(laptopSalesData);
-});
 
 const dbConnection = async () => {
   try {
