@@ -1,6 +1,9 @@
 import React from 'react';
+import { usePCParts } from '../../contexts/PCPartsContext';
 
-const PlatformSelector = ({ platform, setPlatform }) => {
+const PlatformSelector = () => {
+  const { platform, setPlatform } = usePCParts();
+
   return (
     <div className="mb-6">
       <h2 className="text-2xl font-bold text-white mb-4">CHOOSE PLATFORM</h2>
@@ -34,12 +37,6 @@ const PlatformSelector = ({ platform, setPlatform }) => {
           AMD
         </label>
       </div>
-      <button
-        className="bg-white text-black font-semibold py-2 px-4 rounded"
-        onClick={() => console.log('Add platform')}
-      >
-        ADD
-      </button>
     </div>
   );
 };
