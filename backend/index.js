@@ -20,6 +20,7 @@ const routes = [
   { path: '/api/laptop', module: require('./routes/laptopRoutes') },
   { path: '/api/order', module: require('./routes/orderRoutes') },
   { path: '/api/product', module: require('./routes/productRoutes') },
+  { path: '/api/wishlist', module: require('./routes/wishlistRoutes') },
 ];
 
 const dbConnection = async () => {

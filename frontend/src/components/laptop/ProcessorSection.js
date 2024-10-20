@@ -17,7 +17,8 @@ const ProcessorSection = () => {
     const navigate = useNavigate();
 
     const handleProcessorClick = (processor) => {
-        navigate('/laptops/store', { state: { filters: { processor } } });
+        processor = processor.startsWith('Apple') ? processor.split(' ')[1] : processor;
+        navigate('/laptops/store', { state: { filters: { processor,os: '', brand: '', price: '', ram: '', rating: '' } } });
     };
 
     const intelProcessors = [
@@ -37,6 +38,7 @@ const ProcessorSection = () => {
     const appleProcessors = [
         { name: 'Apple M1', description: 'Ideal for Personal And Professional use' },
         { name: 'Apple M2', description: 'Ideal for Students And Creators' },
+        { name: 'Apple M2 Pro', description: 'Ideal for Students And Creators' },
     ];
 
     return (

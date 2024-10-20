@@ -7,7 +7,7 @@ const OSSection = ({ os, image }) => {
   const navigate = useNavigate();
 
   const handleOSClick = () => {
-    navigate('/laptops/store', { state: { filters: { os} } });
+    navigate('/laptops/store', { state: { filters: { os, brand: '', price: '', processor: '', ram: '', rating: '' } } });
   };
 
   return (
@@ -24,7 +24,7 @@ const BrandSection = ({ brand, image }) => {
   const navigate = useNavigate();
 
   const handleBrandClick = () => {
-    navigate('/laptops/store', { state: { filters: { brand: brand.toLowerCase() } } });
+    navigate('/laptops/store', { state: { filters: { brand, os: '', price: '', processor: '', ram: '', rating: '' } } });
   };
 
   return (
@@ -36,25 +36,6 @@ const BrandSection = ({ brand, image }) => {
     </div>
   );
 };
-
-// const ProcessorSection = ({ processor }) => {
-//   const navigate = useNavigate();
-
-//   const handleProcessorClick = () => {
-//     navigate('/laptops/store', { state: { filters: { processor } } });
-//   };
-
-//   return (
-//     <div 
-//       onClick={handleProcessorClick} 
-//       className="relative h-40 rounded-lg overflow-hidden group cursor-pointer bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center"
-//     >
-//       <div className="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-//         <span className="text-white text-xl font-semibold">{processor}</span>
-//       </div>
-//     </div>
-//   );
-// };
 
 const LaptopWelcome = () => {
   return (
@@ -87,7 +68,7 @@ const LaptopWelcome = () => {
            <h2 className="text-2xl font-bold mb-4">Pick Your Laptop Brand</h2>
           <div className="grid grid-cols-2 h-55 md:grid-cols-4 gap-4">
             <BrandSection brand="Apple" image="/images/apple-logo.webp" />
-            <BrandSection brand="ASUS" image="/images/asus-logo.png" />
+            <BrandSection brand="HP" image="/images/asus-logo.png" />
             <BrandSection brand="Lenovo" image="/images/lenovo-logo.png" />
             <BrandSection brand="Dell" image="/images/dell-logo.jpeg" />
           </div>

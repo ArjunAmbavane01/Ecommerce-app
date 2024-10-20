@@ -28,14 +28,22 @@ const LaptopStore = () => {
     brand: '',
     price: '',
     processor: '',
-    ram: '',
+    ramSize: '',
     rating: '',
   });
   const location = useLocation();
 
   useEffect(() => {
     if (location.state && location.state.filters) {
-      setFilters(prevFilters => ({ ...prevFilters, ...location.state.filters }));
+      setFilters(prevFilters => {
+        const newFilters = { ...prevFilters };
+        Object.keys(location.state.filters).forEach(key => {
+          if (location.state.filters[key]) {
+            newFilters[key] = location.state.filters[key];
+          }
+        });
+        return newFilters;
+      });
     }
   }, [location.state]);
 
@@ -123,7 +131,7 @@ const LaptopStore = () => {
       brand: '',
       price: '',
       processor: '',
-      ram: '',
+      ramSize: '',
       rating: '',
     });
   };
@@ -138,13 +146,13 @@ const LaptopStore = () => {
         <div className="flex flex-wrap gap-4 mb-6">
           <FilterButton
             label="OS"
-            options={['MacOS', 'Windows']}
+            options={['MacOS', 'Windows', 'ChromeOS']}
             value={filters.os}
             onChange={(value) => handleFilterChange('os', value)}
           />
           <FilterButton
             label="Brand"
-            options={['HP', 'Dell', 'Lenovo', 'ASUS', 'Apple']}
+            options={['HP', 'Dell', 'Lenovo', 'Asus', 'Apple']}
             value={filters.brand}
             onChange={(value) => handleFilterChange('brand', value)}
           />
@@ -158,13 +166,13 @@ const LaptopStore = () => {
             label="Processor Name"
             options={['Intel Core i3', 'Intel Core i5', 'Intel Core i7', 'AMD Ryzen 5', 'AMD Ryzen 7', 'Apple M1', 'Apple M2']}
             value={filters.processor}
-            onChange={(value) => handleFilterChange('processor', value)}
+            onChange={(value) => handleFilterChange('processor', value.startsWith('Apple') ? value.split(' ')[1] : value)}
           />
           <FilterButton
             label="RAM (GB)"
             options={['4', '8', '16', '32']}
-            value={filters.ram}
-            onChange={(value) => handleFilterChange('ram', value)}
+            value={filters.ramSize}
+            onChange={(value) => handleFilterChange('ramSize', `${value}GB`)}
           />
           <FilterButton
             label="Rating"

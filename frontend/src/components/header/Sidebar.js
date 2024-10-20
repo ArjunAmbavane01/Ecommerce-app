@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { FiX } from 'react-icons/fi'
-import { Laptop, ShoppingBag, Clock, House } from 'lucide-react';
+import { Laptop, ShoppingBag, Clock, House, Heart } from 'lucide-react';
 
 export default function Sidebar({ isOpen, onClose }) {
     return (
@@ -19,6 +19,10 @@ export default function Sidebar({ isOpen, onClose }) {
                 <Link to="/laptops/store" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-800" onClick={onClose}>
                     <Laptop className="text-sm mr-3" />
                     Laptop Store
+                </Link>
+                <Link to="/wishlist" className="text-white hover:text-gray-300">
+                    <Heart  className="inline-block mr-1" />
+                    Wishlist
                 </Link>
                 <Link to="/purchase-history" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-800" onClick={onClose}>
                     <Clock className="mr-3" />
