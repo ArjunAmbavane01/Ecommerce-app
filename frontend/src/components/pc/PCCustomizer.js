@@ -18,9 +18,10 @@ const PCCustomizer = () => {
           <div className="flex">
             <div className="w-1/2 bg-white flex items-center justify-center p-8">
               <img
-                src="/images/pc-build.jpeg"
+                src="/images/pc-build-removebg-preview.png"
                 alt="Custom PC Build"
-                className="max-w-full max-h-[400px] object-contain"
+                className="max-w-full max-h-[400px] object-contain scale-150"
+                style={{transform: "scale(2.1)"}}
               />
             </div>
             <div className="w-1/2 bg-gradient-to-b from-red-600 to-purple-800 p-8">
@@ -28,13 +29,11 @@ const PCCustomizer = () => {
                 PLATFORM
               </div>
               <PlatformSelector platform={platform} setPlatform={setPlatform} />
-              {platform && (
                 <ComponentSelector
                   platform={platform}
                   selectedComponents={selectedComponents}
                   setSelectedComponents={setSelectedComponents}
                 />
-              )}
             </div>
           </div>
         </div>

@@ -1,7 +1,6 @@
 import React from 'react';
 
 const ComponentModal = ({ component, platform, setSelectedComponents, closeModal }) => {
-  // This is a mock-up. You'd need to implement actual component options based on the platform and component type.
   const options = ['Option 1', 'Option 2', 'Option 3'];
 
   const selectOption = (option) => {

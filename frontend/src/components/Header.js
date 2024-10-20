@@ -11,7 +11,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-black p-4 flex items-center justify-between text-white">
+      <header className="bg-black py-3 px-4 flex items-center justify-between text-white">
         <button className="flex items-center" onClick={toggleSidebar}>
           <FiMenu className="mr-2" />
           Menu

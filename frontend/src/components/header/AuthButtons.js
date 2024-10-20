@@ -60,11 +60,11 @@ export default function AuthButtons() {
     <>
      <div className="relative" ref={userInfoRef}>
         <button
-          className="flex items-center mr-4"
+          className="flex items-center mr-6"
           onClick={user ? () => setShowUserInfo(!showUserInfo) : toggleModal}
           onMouseEnter={() => user && setShowUserInfo(true)}
         >
-          <FiUser size={24} />
+          <FiUser size={24} className="mr-2" />
           {user ? user.name || 'User' : 'Login'}
         </button>
         {user && showUserInfo && (

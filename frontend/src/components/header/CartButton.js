@@ -10,7 +10,7 @@ export default function CartButton() {
   }
 
   return (
-    <button className="relative" onClick={handleCartClick}>
+    <button className="relative mr-4" onClick={handleCartClick}>
       <FiShoppingCart size={24} />
     </button>
   )

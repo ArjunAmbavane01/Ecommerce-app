@@ -1,14 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const ProcessorCard = ({ name, description, onClick }) => (
-    <div
-        onClick={onClick}
-        className="relative h-48 md:h-52 rounded-lg overflow-hidden group cursor-pointer bg-gradient-to-r from-gray-800 to-gray-900 flex flex-col items-center justify-center p-3 transition-all duration-300 hover:shadow-lg "
-    >
-        <h3 className="text-xl font-bold text-white mb-2">{name}</h3>
-        <p className="text-sm text-gray-300 text-center">{description}</p>
-        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+const ProcessorCard = ({ name, description, onClick, image }) => (
+    <div onClick={onClick} className="relative h-40 rounded-lg overflow-hidden cursor-pointer">
+        <div className="absolute inset-0">
+            <img src={image} alt={name} className="w-full h-full object-cover" />
+        </div>
+        <div className={`absolute inset-0 bg-black ${name.startsWith('Intel') ? "bg-opacity-75" : "bg-opacity-50" } flex flex-col items-center justify-center z-10`}>
+            <span className="text-white text-2xl font-semibold mb-2 z-20 shadow-lg">{name}</span>
+            <span className="text-white text-md text-center px-2 z-20 shadow-lg">{description}</span>
         </div>
     </div>
 );
@@ -24,84 +24,28 @@ const ProcessorSection = () => {
         navigate('/laptops/store', { state: { filters: newFilters } });
     };
 
-    const intelProcessors = [
-        { name: 'Intel Core i3', description: 'Ideal for Casual Use' },
-        { name: 'Intel Core i5', description: 'Ideal for Professional Use' },
-        { name: 'Intel Core i7', description: 'Ideal for Business Use' },
-        { name: 'Intel Core i9', description: 'Ideal for Pros' },
-    ];
-
-    const amdProcessors = [
-        { name: 'AMD Ryzen 3', description: 'Ideal for Personal Use' },
-        { name: 'AMD Ryzen 5', description: 'Ideal for Students' },
-        { name: 'AMD Ryzen 7', description: 'Ideal for Creators' },
-        { name: 'AMD Ryzen 9', description: 'Ideal for Gamers' },
-    ];
-
-    const appleProcessors = [
-        { name: 'Apple M1', description: 'Ideal for Personal And Professional use' },
-        { name: 'Apple M2', description: 'Ideal for Students And Creators' },
-        { name: 'Apple M2 Pro', description: 'Ideal for Students And Creators' },
+    const processors = [
+        { name: 'Intel Core i5', description: 'Ideal for Professional Use', image: '/images/intel.webp' },
+        { name: 'Intel Core i7', description: 'Ideal for Business Use', image: '/images/intel.webp' },
+        { name: 'AMD Ryzen 7', description: 'Ideal for Creators', image: '/images/amd.jpg' },
+        { name: 'AMD Ryzen 9', description: 'Ideal for Gamers', image: '/images/amd.jpg' },
+        { name: 'Apple M1', description: 'Ideal for Personal And Professional use', image: '/images/mac-logo.jpeg' },
+        { name: 'Apple M2', description: 'Ideal for Students And Creators', image: '/images/mac-logo.jpeg' },
     ];
 
     return (
         <section className="mb-12">
-        <h2 className="text-4xl font-bold mb-10 text-center text-white">Choose Your Preferred Processor</h2>
-
-        {/* Intel Processors Section */}
-        <div
-            className="w-full bg-cover bg-center py-5 mb-8"
-            style={{ backgroundImage: "url('/images/intel-logo.webp')" }}
-        >
-            <div className="max-w-screen-xl mx-auto px-4">
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {intelProcessors.map((processor) => (
-                        <ProcessorCard
-                            key={processor.name}
-                            {...processor}
-                            onClick={() => handleProcessorClick(processor.name)}
-                        />
-                    ))}
-                </div>
+            <h2 className="text-2xl font-bold mb-6 text-white">Choose Your Preferred Processor</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                {processors.map((processor) => (
+                    <ProcessorCard
+                        key={processor.name}
+                        {...processor}
+                        onClick={() => handleProcessorClick(processor.name)}
+                    />
+                ))}
             </div>
-        </div>
-
-        {/* AMD Processors Section */}
-        <div
-            className="w-full bg-cover bg-center py-5 mb-8"
-            style={{ backgroundImage: "url('/images/amd-logo.webp')" }} 
-        >
-            <div className="max-w-screen-xl mx-auto px-4">
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {amdProcessors.map((processor) => (
-                        <ProcessorCard
-                            key={processor.name}
-                            {...processor}
-                            onClick={() => handleProcessorClick(processor.name)}
-                        />
-                    ))}
-                </div>
-            </div>
-        </div>
-
-        {/* Apple Processors Section */}
-        <div
-            className="w-full bg-cover bg-center py-5 mb-8"
-            style={{ backgroundImage: "url('/images/mac-logo.jpeg')" }}
-        >
-            <div className="max-w-screen-xl mx-auto px-4">
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                    {appleProcessors.map((processor) => (
-                        <ProcessorCard
-                            key={processor.name}
-                            {...processor}
-                            onClick={() => handleProcessorClick(processor.name)}
-                        />
-                    ))}
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
     );
 };
 
