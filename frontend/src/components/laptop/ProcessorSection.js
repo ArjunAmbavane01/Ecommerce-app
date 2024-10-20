@@ -17,8 +17,11 @@ const ProcessorSection = () => {
     const navigate = useNavigate();
 
     const handleProcessorClick = (processor) => {
+        const existingFilters = JSON.parse(localStorage.getItem('laptopFilters') || '{}');
         processor = processor.startsWith('Apple') ? processor.split(' ')[1] : processor;
-        navigate('/laptops/store', { state: { filters: { processor,os: '', brand: '', price: '', ram: '', rating: '' } } });
+        const newFilters = { ...existingFilters, processor, os: '', brand: '', price: '', ram: '', rating: '' };
+        localStorage.setItem('laptopFilters', JSON.stringify(newFilters));
+        navigate('/laptops/store', { state: { filters: newFilters } });
     };
 
     const intelProcessors = [

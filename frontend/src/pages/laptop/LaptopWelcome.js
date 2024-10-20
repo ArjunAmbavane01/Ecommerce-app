@@ -7,7 +7,10 @@ const OSSection = ({ os, image }) => {
   const navigate = useNavigate();
 
   const handleOSClick = () => {
-    navigate('/laptops/store', { state: { filters: { os, brand: '', price: '', processor: '', ram: '', rating: '' } } });
+    const existingFilters = JSON.parse(localStorage.getItem('laptopFilters') || '{}');
+    const newFilters = { ...existingFilters, os, brand: '', price: '', processor: '', ram: '', rating: '' };
+    localStorage.setItem('laptopFilters', JSON.stringify(newFilters));
+    navigate('/laptops/store', { state: { filters: newFilters } });
   };
 
   return (
@@ -24,7 +27,10 @@ const BrandSection = ({ brand, image }) => {
   const navigate = useNavigate();
 
   const handleBrandClick = () => {
-    navigate('/laptops/store', { state: { filters: { brand, os: '', price: '', processor: '', ram: '', rating: '' } } });
+    const existingFilters = JSON.parse(localStorage.getItem('laptopFilters') || '{}');
+    const newFilters = { ...existingFilters, brand, os: '', price: '', processor: '', ram: '', rating: '' };
+    localStorage.setItem('laptopFilters', JSON.stringify(newFilters));
+    navigate('/laptops/store', { state: { filters: newFilters } });
   };
 
   return (

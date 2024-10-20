@@ -47,6 +47,10 @@ const LaptopStore = () => {
     }
   }, [location.state]);
 
+  useEffect(() => {
+    localStorage.setItem('laptopFilters', JSON.stringify(filters));
+  }, [filters]);
+
   const fetchLaptops = useCallback(async () => {
     setIsLoading(true);
     setError(null);
@@ -85,7 +89,24 @@ const LaptopStore = () => {
   }, [fetchLaptops]);
 
   const handleFilterChange = (filterName, value) => {
-    setFilters(prevFilters => ({ ...prevFilters, [filterName]: value }));
+    setFilters(prevFilters => {
+      const newFilters = { ...prevFilters, [filterName]: value };
+      localStorage.setItem('laptopFilters', JSON.stringify(newFilters));
+      return newFilters;
+    });
+  };
+
+  const resetFilters = () => {
+    const emptyFilters = {
+      os: '',
+      brand: '',
+      price: '',
+      processor: '',
+      ram: '',
+      rating: '',
+    };
+    setFilters(emptyFilters);
+    localStorage.setItem('laptopFilters', JSON.stringify(emptyFilters));
   };
 
   const getPriceValue = (option) => {
@@ -123,17 +144,6 @@ const LaptopStore = () => {
       console.error('Error adding product to cart:', error);
       alert('Failed to add product to cart. Please try again later.');
     }
-  };
-
-  const resetFilters = () => {
-    setFilters({
-      os: '',
-      brand: '',
-      price: '',
-      processor: '',
-      ramSize: '',
-      rating: '',
-    });
   };
 
   return (
