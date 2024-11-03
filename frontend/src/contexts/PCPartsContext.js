@@ -6,8 +6,19 @@ export const PCPartsProvider = ({ children }) => {
   const [platform, setPlatform] = useState('intel');
   const [selectedComponents, setSelectedComponents] = useState({});
 
+  const areAllComponentsSelected = () => {
+    const requiredComponents = ['CPU', 'Motherboard', 'RAM', 'Storage', 'GPU', 'Case', 'Power Supply'];
+    return requiredComponents.every(component => selectedComponents[component]);
+  };
+
   return (
-    <PCPartsContext.Provider value={{ platform, setPlatform, selectedComponents, setSelectedComponents }}>
+    <PCPartsContext.Provider value={{ 
+      platform, 
+      setPlatform, 
+      selectedComponents, 
+      setSelectedComponents,
+      areAllComponentsSelected 
+    }}>
       {children}
     </PCPartsContext.Provider>
   );

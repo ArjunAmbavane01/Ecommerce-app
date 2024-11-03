@@ -21,6 +21,7 @@ const routes = [
   { path: '/api/order', module: require('./routes/orderRoutes') },
   { path: '/api/product', module: require('./routes/productRoutes') },
   { path: '/api/wishlist', module: require('./routes/wishlistRoutes') },
+  { path: '/api/pc', module: require('./routes/pcRoutes') },
 ];
 
 const dbConnection = async () => {

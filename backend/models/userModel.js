@@ -12,7 +12,8 @@ const userSchema = new mongoose.Schema({
   purchaseHistory: [{
     item_id: { type: mongoose.Schema.Types.ObjectId }, 
     date: { type: Date, default: Date.now },
-    price: { type: Number }
+    price: { type: Number },
+    type: { type: String, enum: ['Laptop', 'PC'], default: 'Laptop' }
   }],
   wishlist: [{ type: mongoose.Schema.Types.ObjectId }]
 });
