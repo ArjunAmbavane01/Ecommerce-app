@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import OrderConfirmation from '../../components/order/OrderConfirmation';
-import { CircleX } from 'lucide-react';
 import Header from '../../components/Header';
 import { useCart } from '../../contexts/CartContext';
 

@@ -10,7 +10,7 @@ const PCCustomizer = () => {
 
   const navigate = useNavigate();
   const { user } = useAuth();
-  const { selectedComponents, areAllComponentsSelected } = usePCParts();
+  const { areAllComponentsSelected } = usePCParts();
 
   const handlePurchaseBuild = () => {
     if (!user) {

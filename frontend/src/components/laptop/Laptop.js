@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { FiHeart, FiShoppingCart } from 'react-icons/fi';
+import { FiHeart } from 'react-icons/fi';
 import defaultLaptopImage from '../../assets/default-laptop.png';
 import { useCart } from '../../contexts/CartContext';
 import { useWishlist } from '../../contexts/WishlistContext';

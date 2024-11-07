@@ -3,7 +3,7 @@ import { usePCParts } from '../../contexts/PCPartsContext';
 import { Trash2 } from 'lucide-react';
 
 const BuildSummary = () => {
-  const { platform, selectedComponents, setSelectedComponents } = usePCParts();
+  const { selectedComponents, setSelectedComponents } = usePCParts();
 
   const removeComponent = (componentName) => {
     setSelectedComponents(prev => {

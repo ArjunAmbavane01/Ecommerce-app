@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
 import { usePCParts } from '../../contexts/PCPartsContext';
 import axios from 'axios';
 import Header from '../../components/Header';
@@ -8,7 +7,6 @@ import OrderConfirmation from '../../components/order/OrderConfirmation';
 
 const PurchaseBuild = () => {
     const navigate = useNavigate();
-    const { user } = useAuth();
     const { selectedComponents } = usePCParts();
     const [isLoading, setIsLoading] = useState(false);
     const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
@@ -33,7 +31,7 @@ const PurchaseBuild = () => {
                 }
             });
             if (response.data.success) {
-                const { data, orderNumber, shippingAddress } = response.data;
+                const { orderNumber, shippingAddress } = response.data;
                 setOrderDetails({
                     orderNumber,
                     shippingAddress: {

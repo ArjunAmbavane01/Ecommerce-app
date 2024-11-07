@@ -2,7 +2,7 @@ import React from 'react';
 import { usePCParts } from '../../contexts/PCPartsContext';
 
 const ComponentModal = ({ component, options, closeModal }) => {
-  const { selectedComponents, setSelectedComponents } = usePCParts();
+  const { setSelectedComponents } = usePCParts();
 
   const handleSelect = (option) => {
     setSelectedComponents(prev => ({

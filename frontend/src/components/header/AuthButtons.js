@@ -204,7 +204,7 @@ export default function AuthButtons() {
                   <input type="checkbox" id="terms" className="mr-2" required />
                   <label htmlFor="terms" className="text-sm text-gray-400">
                     I accept the{' '}
-                    <a href="#" className="text-blue-500 hover:underline">
+                    <a href="/laptops" className="text-blue-500 hover:underline">
                       Terms and Conditions
                     </a>
                   </label>
@@ -236,11 +236,11 @@ export default function AuthButtons() {
             </p>
             <p className="mt-4 text-xs text-gray-500 text-center">
               By continuing you agree to our{' '}
-              <a href="#" className="text-blue-500 hover:underline">
+              <a href="/laptops" className="text-blue-500 hover:underline">
                 Terms of Use
               </a>{' '}
               &{' '}
-              <a href="#" className="text-blue-500 hover:underline">
+              <a href="/laptops" className="text-blue-500 hover:underline">
                 Privacy Policy
               </a>
             </p>
