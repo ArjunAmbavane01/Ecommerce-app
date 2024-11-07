@@ -55,7 +55,7 @@ const LaptopWelcome = () => {
             <h2 className="text-xl font-semibold text-[#2c2c2c]">Laptops That Bring Out the Best In You</h2>
           </div>
           <div className="w-1/2 h-full flex items-center justify-end relative">
-            <img src="/images/laptop.jpg" alt="laptop" className="h-full w-full object-cover" />
+            <img src="/images/laptopWelcome.png" alt="laptop" className="h-full w-full object-cover" />
           </div>
         </div>
       </div>
@@ -76,7 +76,7 @@ const LaptopWelcome = () => {
             <BrandSection brand="Apple" image="/images/apple-logo.webp" />
             <BrandSection brand="HP" image="/images/asus-logo.png" />
             <BrandSection brand="Lenovo" image="/images/lenovo-logo.png" />
-            <BrandSection brand="Dell" image="/images/dell-logo.jpeg" />
+            <BrandSection brand="Dell" image="/images/dell-xps13.jpeg" />
           </div>
         </section>
 
