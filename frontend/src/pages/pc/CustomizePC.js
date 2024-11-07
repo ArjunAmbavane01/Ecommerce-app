@@ -1,7 +1,6 @@
 import React from 'react';
 import PCCustomizer from '../../components/pc/PCCustomizer';
 import Header from '../../components/Header';
-import { PCPartsProvider } from '../../contexts/PCPartsContext';
 
 
 const CustomizePC = () => {
@@ -12,9 +11,7 @@ const CustomizePC = () => {
       </header>
       <main className="max-w-8xl mx-auto p-6">
         <h1 className="text-3xl font-bold mb-6">Customize Your PC</h1>
-        <PCPartsProvider>
           <PCCustomizer />
-        </PCPartsProvider>
       </main>
     </div>
   );

@@ -3,7 +3,7 @@ import { usePCParts } from '../../contexts/PCPartsContext';
 import { Trash2 } from 'lucide-react';
 
 const BuildSummary = () => {
-  const { selectedComponents, setSelectedComponents } = usePCParts();
+  const { platform, selectedComponents, setSelectedComponents } = usePCParts();
 
   const removeComponent = (componentName) => {
     setSelectedComponents(prev => {
@@ -16,27 +16,25 @@ const BuildSummary = () => {
   const totalPrice = Object.values(selectedComponents).reduce((sum, component) => sum + (component?.price || 0), 0);
 
   const componentTypes = [
-    { name: 'PLATFORM', icon: '⚙️' },
     { name: 'CPU', icon: '🔲' },
     { name: 'GPU', icon: '🖥️' },
-    { name: 'CASE', icon: '📦' },
-    { name: 'MOTHERBOARD', icon: '🔌' },
-    { name: 'CPU COOLER', icon: '❄️' },
-    { name: 'SMPS', icon: '🔋' },
+    { name: 'Case', icon: '📦' },
+    { name: 'Motherboard', icon: '🔌' },
+    { name: 'Power Supply', icon: '🔋' },
     { name: 'RAM', icon: '🧠' },
-    { name: 'STORAGE 1', icon: '💽' },
-    { name: 'STORAGE 2', icon: '💾' },
+    { name: 'Storage', icon: '💾' },
   ];
 
   return (
-    <div className="bg-[#f5f7e5] flex flex-col items-center justify-center p-4">
-      <div className="w-full">
+    <div className="bg-[#f5f7e5] flex flex-col items-center justify-center py-4 px-6">
+      <div className="w-full mx-2">
         <div className="bg-white rounded-lg shadow-lg p-6">
           <div className="grid grid-cols-3 gap-8">
             {componentTypes.map((component, index) => {
-              const selectedComponent = selectedComponents[component.name] || { name: 'Select', price: 0 };
+              let selectedComponent;
+              selectedComponent = selectedComponents[component.name] || { name: 'Select', price: 0 };
               return (
-                <div key={index} className="flex justify-between items-center border-b pb-2">
+                <div key={index} className="flex justify-between items-center border-b pb-3">
                   <div className="flex items-center">
                     <span className="mr-2 text-2xl">{component.icon}</span>
                     <span className="font-medium text-gray-700">{component.name}</span>
@@ -59,7 +57,7 @@ const BuildSummary = () => {
               );
             })}
           </div>
-          <div className="mt-6 flex justify-between items-center font-bold">
+          <div className="mt-9 flex justify-between items-center font-bold">
             <span>Total Price:</span>
             <span>${totalPrice}</span>
           </div>
