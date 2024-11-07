@@ -14,6 +14,8 @@ import PurchaseHistory from './pages/PurchaseHistory';
 import Wishlist from './pages/Wishlist';
 import PurchaseBuild from './pages/pc/PurchaseBuild';
 
+import OrderStatsCharts from './components/OrderStatsCharts';
+
 
 function App() {
   return (
@@ -32,6 +34,9 @@ function App() {
                 <Route path="/wishlist" element={<Wishlist />} />
                 <Route path="/customize-pc" element={<CustomizePC />} />
                 <Route path="/purchase-build" element={<PurchaseBuild />} />
+
+              <Route path="/laptops/order-chart" element={<OrderStatsCharts />} />
+
               </Routes>
             </Router>
           </PCPartsProvider>
