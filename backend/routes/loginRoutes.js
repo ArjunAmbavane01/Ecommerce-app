@@ -88,4 +88,71 @@ router.post('/validateToken', async (req, res) => {
     }
 });
 
+router.put("/update-profile", async (req, res) => {
+    try {
+        const { userId, username, email, phNo, currentPassword, newPassword } = req.body;
+
+        // Find user and check if exists
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found', success: false });
+        }
+
+        // Check if email is already taken by another user
+        if (email !== user.email) {
+            const emailExists = await User.findOne({ email, _id: { $ne: userId } });
+            if (emailExists) {
+                return res.status(400).json({ message: 'Email is already registered', success: false });
+            }
+        }
+
+        // Check if username is already taken by another user
+        if (username !== user.username) {
+            const usernameExists = await User.findOne({ username, _id: { $ne: userId } });
+            if (usernameExists) {
+                return res.status(400).json({ message: 'Username is already taken', success: false });
+            }
+        }
+
+        // Verify current password if user wants to change password
+        if (newPassword) {
+            if (!currentPassword) {
+                return res.status(400).json({ message: 'Current password is required', success: false });
+            }
+
+            const isPasswordValid = await bcrypt.compare(currentPassword, user.password);
+            if (!isPasswordValid) {
+                return res.status(401).json({ message: 'Current password is incorrect', success: false });
+            }
+            
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(newPassword, salt);
+            user.password = hashedPassword;
+        }
+
+        // Update other fields
+        user.username = username || user.username;
+        user.email = email || user.email;
+        user.phNo = phNo || user.phNo;
+
+        const updatedUser = await user.save();
+
+        return res.status(200).json({
+            data: {
+                _id: updatedUser._id,
+                username: updatedUser.username,
+                email: updatedUser.email,
+                phNo: updatedUser.phNo
+            },
+            success: true,
+            message: 'Profile updated successfully'
+        });
+    } catch (error) {
+        return res.status(500).json({ 
+            error: 'Internal server error: ' + error.message, 
+            success: false 
+        });
+    }
+});
+
 module.exports = router;

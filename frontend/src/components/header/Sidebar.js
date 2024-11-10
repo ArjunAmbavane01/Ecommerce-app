@@ -28,10 +28,6 @@ export default function Sidebar({ isOpen, onClose }) {
                     <Clock className="mr-3" />
                     Purchase History
                 </Link>
-                <Link to="/pending-orders" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-800" onClick={onClose}>
-                    <ShoppingBag className="mr-3" />
-                    Current Orders Pending
-                </Link>
             </nav>
         </div>
     )
