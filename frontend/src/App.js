@@ -13,6 +13,7 @@ import Checkout from './pages/order/Checkout';
 import PurchaseHistory from './pages/PurchaseHistory';
 import Wishlist from './pages/Wishlist';
 import PurchaseBuild from './pages/pc/PurchaseBuild';
+import UpdateProfile from './pages/UpdateProfile';
 
 import OrderStatsCharts from './components/OrderStatsCharts';
 
@@ -34,6 +35,7 @@ function App() {
                 <Route path="/wishlist" element={<Wishlist />} />
                 <Route path="/customize-pc" element={<CustomizePC />} />
                 <Route path="/purchase-build" element={<PurchaseBuild />} />
+                <Route path='/update-profile' element={<UpdateProfile />} />
 
               <Route path="/laptops/order-chart" element={<OrderStatsCharts />} />
 
