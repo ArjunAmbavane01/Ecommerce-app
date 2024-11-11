@@ -129,7 +129,7 @@ const OrderStatsCharts = () => {
 
                 <div className="bg-gray-900 border border-gray-800 rounded-lg p-6">
                     <h3 className="text-lg font-semibold text-white mb-4">Popular Laptop Models</h3>
-                    <div className="h-[550px]">
+                    <div className="h-[650px]">
                         <ResponsiveContainer width="100%" height="100%">
                             <BarChart data={popularLaptops}>
                                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
@@ -138,7 +138,7 @@ const OrderStatsCharts = () => {
                                     stroke="#9CA3AF"
                                     angle={-45}
                                     textAnchor="end"
-                                    height={120}
+                                    height={150}
                                     interval={0}
                                 />
                                 <YAxis stroke="#9CA3AF" />

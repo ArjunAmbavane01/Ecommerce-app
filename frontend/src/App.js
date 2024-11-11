@@ -11,6 +11,7 @@ import CustomizePC from './pages/pc/CustomizePC';
 import ShoppingCart from './pages/order/ShoppingCart';
 import Checkout from './pages/order/Checkout';
 import PurchaseHistory from './pages/PurchaseHistory';
+import PCPurchaseHistory from './pages/PCPurchaseHistory';
 import Wishlist from './pages/Wishlist';
 import PurchaseBuild from './pages/pc/PurchaseBuild';
 import UpdateProfile from './pages/UpdateProfile';
@@ -31,6 +32,7 @@ function App() {
                 <Route path="/laptops/store" element={<LaptopStore />} />
                 <Route path="/cart" element={<ShoppingCart />} />
                 <Route path="/purchase-history" element={<PurchaseHistory />} />
+                <Route path="/pc-purchase-history" element={<PCPurchaseHistory />} />
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/wishlist" element={<Wishlist />} />
                 <Route path="/customize-pc" element={<CustomizePC />} />

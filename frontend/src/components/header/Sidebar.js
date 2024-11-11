@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { FiX } from 'react-icons/fi'
-import { Laptop,UserRound, Clock, House, Heart } from 'lucide-react';
+import { Laptop,UserRound, Clock, House, Heart,Computer } from 'lucide-react';
 
 export default function Sidebar({ isOpen, onClose }) {
     return (
@@ -12,23 +12,31 @@ export default function Sidebar({ isOpen, onClose }) {
                 </button>
             </div>
             <nav className="mt-8">
-                <Link to="/" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-800" onClick={onClose}>
+                <Link to="/" className="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-800" onClick={onClose}>
                     <House className="mr-3" />
                     Home
                 </Link>
-                <Link to="/laptops/store" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-800" onClick={onClose}>
+                <Link to="/laptops/store" className="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-800" onClick={onClose}>
                     <Laptop className="text-sm mr-3" />
                     Laptop Store
                 </Link>
-                <Link to="/wishlist" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-800">
+                <Link to="/customize-pc" className="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-800" onClick={onClose}>
+                    <Computer className="text-sm mr-3" />
+                    Customize PC
+                </Link>
+                <Link to="/wishlist" className="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-800">
                     <Heart  className=" text-sm mr-3" />
                     Wishlist
                 </Link>
-                <Link to="/purchase-history" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-800" onClick={onClose}>
+                <Link to="/purchase-history" className="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-800" onClick={onClose}>
                     <Clock className="mr-3" />
-                    Purchase History
+                    Laptop Purchase History
                 </Link>
-                <Link to="/update-profile" className="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-800" onClick={onClose}>
+                <Link to="/pc-purchase-history" className="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-800" onClick={onClose}>
+                    <Clock className="mr-3" />
+                    PC Purchase History
+                </Link>
+                <Link to="/update-profile" className="flex items-center px-4 py-3 text-gray-300 hover:bg-gray-800" onClick={onClose}>
                     <UserRound className="mr-3" />
                     User Details
                 </Link>
