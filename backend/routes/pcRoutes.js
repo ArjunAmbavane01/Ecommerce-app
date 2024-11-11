@@ -5,7 +5,6 @@ const PCPart = require('../models/pcPartsModel');
 const User = require('../models/userModel');
 const requireAuth = require('../middleware/reqAuth');
 
-// all  PC parts 
 router.get('/pcparts', async (req, res) => {
     try {
         const pcParts = await PCPart.find();
@@ -31,7 +30,6 @@ router.post('/purchase', requireAuth, async (req, res) => {
         const { components, totalPrice } = req.body;
         const user_id = req.id;
 
-        // Validate input
         if (!components || !totalPrice || typeof totalPrice !== 'number') {
             return res.status(400).json({ success: false, error: 'Invalid input data' });
         }
@@ -46,7 +44,6 @@ router.post('/purchase', requireAuth, async (req, res) => {
 
         const savedPC = await newPC.save();
 
-        // Update user's purchase history
         await User.findByIdAndUpdate(user_id, {
             $push: {
                 purchaseHistory: {
@@ -69,7 +66,6 @@ router.post('/purchase', requireAuth, async (req, res) => {
     }
 });
 
-// user's PC purchase history
 router.get('/purchaseHistory', requireAuth, async (req, res) => {
     try {
         const user_id = req.id;
@@ -81,7 +77,6 @@ router.get('/purchaseHistory', requireAuth, async (req, res) => {
     }
 });
 
-// cancel PC order
 router.delete('/cancelOrder/:orderId', requireAuth, async (req, res) => {
     try {
         const { orderId } = req.params;
