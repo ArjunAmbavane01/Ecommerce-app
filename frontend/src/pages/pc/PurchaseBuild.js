@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { usePCParts } from '../../contexts/PCPartsContext';
+import defaultImage from '../../assets/default-laptop.png';
 import axios from 'axios';
 import Header from '../../components/Header';
 import OrderConfirmation from '../../components/order/OrderConfirmation';
@@ -42,12 +43,11 @@ const PurchaseBuild = () => {
                     items: Object.values(selectedComponents).map(component => ({
                         name: component.name,
                         price: component.price,
-                        photoURL: component.photoURL || '/placeholder-image.jpg',
-                        color: component.color || 'N/A'
+                        photoURL: component.photoURL || defaultImage,
                     })),
                     subtotal: totalPrice,
-                    tax: totalPrice * 0.1, // Assuming 10% tax
-                    shipping: 500, // Assuming flat shipping rate
+                    tax: totalPrice * 0.1, 
+                    shipping: 500, 
                     total: totalPrice + (totalPrice * 0.1) + 500
                 });
                 setIsConfirmationOpen(true);
@@ -61,38 +61,45 @@ const PurchaseBuild = () => {
 
     const closeConfirmation = () => {
         setIsConfirmationOpen(false);
-        navigate('/orders');
+        navigate('/customize-pc');
     };
 
     return (
-        <>
+        <div className="container mx-auto bg-gray-100 ">
             <Header />
-            <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
-                <h1 className="text-3xl font-bold mb-6">Purchase Your Custom PC</h1>
-                <div className="mb-6">
-                    <h2 className="text-xl font-semibold mb-2">Selected Components:</h2>
-                    <ul className="space-y-2">
-                        {Object.entries(selectedComponents).map(([type, component]) => (
-                            <li key={type} className="flex justify-between items-center border-b pb-2">
-                                <span className="font-medium">{type}:</span>
-                                <div className="text-right">
-                                    <div>{component.name}</div>
-                                    <div className="text-gray-600">₹{component.price.toFixed(2)}</div>
+            <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-lg flex mt-8 ">
+                <div className="w-1/2 p-8">
+                    <img src="images/pcBuild.jpeg" alt="Product" className=" mt-14 w-full h-auto object-cover rounded-lg shadow-lg" />
+                </div>
+                <div className="w-1/2 p-6">
+                    <h1 className="text-3xl font-bold mb-6">Purchase Your Custom PC</h1>
+                    <div className="mb-6">
+                        <h2 className="text-xl font-semibold mb-2">Selected Components:</h2>
+                        <div className="grid grid-cols-1 gap-4 border-b pb-2">
+                            {Object.entries(selectedComponents).map(([type, component]) => (
+                                <div key={type} className="flex justify-between items-center">
+                                    <span className="font-medium">{type}:</span>
+                                    <div className="text-right">
+                                        <div>{component.name}</div>
+                                        <div className="text-gray-600">${component.price.toFixed(2)}</div>
+                                    </div>
                                 </div>
-                            </li>
-                        ))}
-                    </ul>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="text-xl font-bold mb-6 text-right">
+                        Total Price: ${totalPrice.toFixed(2)}
+                    </div>
+                    <div className="flex justify-end">
+                        <button
+                            onClick={handlePurchase}
+                            disabled={isLoading}
+                            className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300 disabled:bg-gray-400"
+                        >
+                            {isLoading ? 'Processing...' : 'Confirm Purchase'}
+                        </button>
+                    </div>
                 </div>
-                <div className="text-xl font-bold mb-6 text-right">
-                    Total Price: ₹{totalPrice.toFixed(2)}
-                </div>
-                <button
-                    onClick={handlePurchase}
-                    disabled={isLoading}
-                    className="w-full bg-blue-500 text-white py-3 px-4 rounded-lg hover:bg-blue-600 transition duration-300 disabled:bg-gray-400 text-lg font-semibold"
-                >
-                    {isLoading ? 'Processing...' : 'Confirm Purchase'}
-                </button>
             </div>
             {orderDetails && (
                 <OrderConfirmation
@@ -101,7 +108,7 @@ const PurchaseBuild = () => {
                     orderDetails={orderDetails}
                 />
             )}
-        </>
+        </div>
     );
 };
 
