@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { ArrowUpRight, TrendingUp, Package, Laptop } from 'lucide-react';
+import StatsCards from './StatsCards';
 
 const OrderStatsCharts = () => {
     const [yearlyOrders, setYearlyOrders] = useState([]);
@@ -29,8 +30,7 @@ const OrderStatsCharts = () => {
                     monthlyRes.json(),
                     laptopsRes.json()
                 ]);
-
-                console.log(laptopsData.data);
+                console.log(popularLaptops)
                 setYearlyOrders(yearlyData.data);
                 setMonthlyOrders(monthlyData.data);
                 setPopularLaptops(laptopsData.data);
@@ -85,24 +85,8 @@ const OrderStatsCharts = () => {
         <div className="min-h-screen bg-black p-8">
             <div className="max-w-7xl mx-auto">
                 <h1 className="text-3xl font-bold text-white mb-8">Sales Dashboard</h1>
-
                 <div className="grid gap-6 md:grid-cols-3 mb-8">
-                    <StatsCard
-                        title="Total Revenue (2024)"
-                        value="4,935,690"
-                        icon={TrendingUp}
-                        trend="12.5"
-                    />
-                    <StatsCard
-                        title="Monthly Orders"
-                        value="1,245,230"
-                        icon={Package}
-                    />
-                    <StatsCard
-                        title="Popular Models Sold"
-                        value="842"
-                        icon={Laptop}
-                    />
+                    <StatsCards yearlyData={yearlyOrders} monthlyData= {monthlyOrders} popularLaptops={popularLaptops}/>
                 </div>
 
                 <div className="grid gap-6 md:grid-cols-2 mb-6">
