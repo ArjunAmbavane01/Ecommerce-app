@@ -61,11 +61,6 @@ export default function Component({ isOpen, onClose, orderDetails }) {
             </div>
           </div>
         </div>
-        <div className="bg-gray-100 px-6 py-4 rounded-b-lg">
-          <button className="w-full bg-gray-200 text-gray-800 py-2 px-4 rounded hover:bg-gray-300">
-            View Invoice
-          </button>
-        </div>
       </div>
     </div>
   )

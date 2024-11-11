@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
       if (response.ok) {
         const { data } = await response.json();
         localStorage.setItem('token', data.token);
-        setUser({ _id: data._id, name: data.name, username: data.username });
+        setUser({ _id: data._id, name: data.name, username: data.username,email: data.email, phNo:data.phNo });
         return true;
       }
       return false;
@@ -64,8 +64,11 @@ export const AuthProvider = ({ children }) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, username, email, password, phNo })
       });
+      const msg  = await response.json();
+      if(msg.message){
+        alert(msg.message)
+      }
       if (response.ok) {
-       await response.json();
         return true;
       }
       return false;
