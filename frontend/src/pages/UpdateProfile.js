@@ -5,9 +5,9 @@ import Header from '../components/Header';
 export default function UpdateProfile() {
     const { user } = useAuth();
     const [formData, setFormData] = useState({
-        username: '',
+        name: '',
         email: '',
-        mobile: '',
+        phNo: '',
         currentPassword: '',
         newPassword: '',
         confirmPassword: ''
@@ -15,18 +15,29 @@ export default function UpdateProfile() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const [isPasswordChange, setIsPasswordChange] = useState(false);
+    const [showMessages, setShowMessages] = useState(true);
 
 
     useEffect(() => {
         if (user) {
             setFormData(prev => ({
                 ...prev,
-                username: user.username || '',
+                name: user.name || '',
                 email: user.email || '',
-                mobile: user.phNo || ''
+                phNo: user.phNo || ''
             }));
         }
     }, [user]);
+
+    useEffect(() => {
+        let timer;
+        if (error || success) {
+            timer = setTimeout(() => {
+                setShowMessages(false);
+            }, 3000);
+        }
+        return () => clearTimeout(timer);
+    }, [error, success]);
 
     const handleChange = (e) => {
         setFormData(prev => ({
@@ -67,9 +78,9 @@ export default function UpdateProfile() {
                 },
                 body: JSON.stringify({
                     userId: user._id,
-                    username: formData.username,
+                    name: formData.name,
                     email: formData.email,
-                    phNo: formData.mobile,
+                    phNo: formData.phNo,
                     currentPassword: formData.currentPassword,
                     newPassword: formData.newPassword
                 })
@@ -96,9 +107,9 @@ export default function UpdateProfile() {
     const handleDiscard = () => {
         if (user) {
             setFormData({
-                username: user.username || '',
+                name: user.name || '',
                 email: user.email || '',
-                mobile: user.phNo || '',
+                phNo: user.phNo || '',
                 currentPassword: '',
                 newPassword: '',
                 confirmPassword: ''
@@ -121,12 +132,12 @@ export default function UpdateProfile() {
                     </div>
                 )}
 
-                {error && (
+                {showMessages && error && (
                     <div className="mb-4 p-3 bg-red-500 text-white rounded-md">
                         {error}
                     </div>
                 )}
-                {success && (
+                {showMessages && success && (
                     <div className="mb-4 p-3 bg-green-500 text-white rounded-md">
                         {success}
                     </div>
@@ -134,18 +145,18 @@ export default function UpdateProfile() {
 
                 {user && (
                     <form onSubmit={handleSubmit} className="space-y-6">
-                        {/* Username and Email */}
+                        {/* name and Email */}
                         <div className="grid grid-cols-2 gap-6">
                             <div>
-                                <label className="block text-white mb-2">Username *</label>
+                                <label className="block text-white mb-2">name *</label>
                                 <div className="relative">
                                     <input
                                         type="text"
-                                        name="username"
-                                        value={formData.username}
+                                        name="name"
+                                        value={formData.name}
                                         onChange={handleChange}
                                         className="w-full bg-white text-black rounded-md px-4 py-2.5"
-                                        placeholder="Enter username"
+                                        placeholder="Enter name"
                                     />
                                 </div>
                             </div>
@@ -170,8 +181,8 @@ export default function UpdateProfile() {
                             <div className="relative">
                                 <input
                                     type="tel"
-                                    name="mobile"
-                                    value={formData.mobile}
+                                    name="phNo"
+                                    value={formData.phNo}
                                     onChange={handleChange}
                                     className="w-full bg-white text-black rounded-md px-4 py-2.5 pl-16"
                                     placeholder="Enter mobile number"
@@ -192,7 +203,7 @@ export default function UpdateProfile() {
                                     id="changePassword"
                                     checked={isPasswordChange}
                                     onChange={() => setIsPasswordChange(!isPasswordChange)} />
-                                <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                             </label>
 
                             <label htmlFor="changePassword" className="text-white">

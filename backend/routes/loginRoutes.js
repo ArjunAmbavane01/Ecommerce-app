@@ -25,7 +25,7 @@ router.post("/signin", async (req, res) => {
         const token = createToken(user._id.toString());
         
         return res.status(200).json({
-            data: { _id: user._id, token, name: user.name, username: user.username },
+            data: { _id: user._id, token, name: user.name, username: user.username, phNo:user.phNo, email:user.email },
             success: true
         });
     } catch (error) {
@@ -90,7 +90,7 @@ router.post('/validateToken', async (req, res) => {
 
 router.put("/update-profile", async (req, res) => {
     try {
-        const { userId, username, email, phNo, currentPassword, newPassword } = req.body;
+        const { userId, name, email, phNo, currentPassword, newPassword } = req.body;
 
         // Find user and check if exists
         const user = await User.findById(userId);
@@ -103,14 +103,6 @@ router.put("/update-profile", async (req, res) => {
             const emailExists = await User.findOne({ email, _id: { $ne: userId } });
             if (emailExists) {
                 return res.status(400).json({ message: 'Email is already registered', success: false });
-            }
-        }
-
-        // Check if username is already taken by another user
-        if (username !== user.username) {
-            const usernameExists = await User.findOne({ username, _id: { $ne: userId } });
-            if (usernameExists) {
-                return res.status(400).json({ message: 'Username is already taken', success: false });
             }
         }
 
@@ -131,7 +123,7 @@ router.put("/update-profile", async (req, res) => {
         }
 
         // Update other fields
-        user.username = username || user.username;
+        user.name = name || user.name;
         user.email = email || user.email;
         user.phNo = phNo || user.phNo;
 
@@ -140,7 +132,7 @@ router.put("/update-profile", async (req, res) => {
         return res.status(200).json({
             data: {
                 _id: updatedUser._id,
-                username: updatedUser.username,
+                name: updatedUser.name,
                 email: updatedUser.email,
                 phNo: updatedUser.phNo
             },

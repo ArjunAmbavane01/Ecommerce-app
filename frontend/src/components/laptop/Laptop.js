@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { FiHeart } from 'react-icons/fi';
-import defaultLaptopImage from '../../assets/default-laptop.png';
+import defaultLaptopImage from '../../assets/default-laptop3.png';
 import { useCart } from '../../contexts/CartContext';
 import { useWishlist } from '../../contexts/WishlistContext';
 import { useAuth } from '../../contexts/AuthContext';
