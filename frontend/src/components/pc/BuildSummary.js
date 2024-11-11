@@ -16,13 +16,13 @@ const BuildSummary = () => {
   const totalPrice = Object.values(selectedComponents).reduce((sum, component) => sum + (component?.price || 0), 0);
 
   const componentTypes = [
-    { name: 'CPU', icon: '🔲' },
-    { name: 'GPU', icon: '🖥️' },
-    { name: 'Case', icon: '📦' },
-    { name: 'Motherboard', icon: '🔌' },
-    { name: 'Power Supply', icon: '🔋' },
-    { name: 'RAM', icon: '🧠' },
-    { name: 'Storage', icon: '💾' },
+    { name: 'CPU', url: '/images/CPU.svg' },
+    { name: 'GPU', url: '/images/GPU.svg' },
+    { name: 'Case', url: '/images/Case.svg' },
+    { name: 'Motherboard', url: '/images/Motherboard.svg' },
+    { name: 'Power Supply', url: '/images/SMPS.svg' },
+    { name: 'RAM', url: '/images/RAM.svg' },
+    { name: 'Storage', url: '/images/Storage.svg' },
   ];
 
   return (
@@ -36,8 +36,9 @@ const BuildSummary = () => {
               return (
                 <div key={index} className="flex justify-between items-center border-b pb-3">
                   <div className="flex items-center">
-                    <span className="mr-2 text-2xl">{component.icon}</span>
-                    <span className="font-medium text-gray-700">{component.name}</span>
+                    <div className="w-8 h-8 mr-3">
+                      <img src={component.url} />
+                    </div>
                   </div>
                   <div className="flex items-center">
                     <span className="text-gray-900 mr-2">{selectedComponent.name}</span>
