@@ -14,7 +14,6 @@ router.get('/pcparts', async (req, res) => {
     }
 });
 
-// PC parts by type
 router.get('/pcparts/:type', async (req, res) => {
     const type = req.params.type;
     try {

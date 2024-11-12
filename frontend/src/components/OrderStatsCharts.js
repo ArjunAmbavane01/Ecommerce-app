@@ -65,22 +65,6 @@ const OrderStatsCharts = () => {
         return null;
     };
 
-    const StatsCard = ({ title, value, icon: Icon, trend }) => (
-        <div className="bg-gray-900 border border-gray-800 rounded-lg p-6">
-            <div className="flex items-center justify-between mb-2">
-                <h3 className="text-sm font-medium text-gray-400">{title}</h3>
-                <Icon className="h-4 w-4 text-gray-500" />
-            </div>
-            <div className="text-2xl font-bold text-white">₹{value}</div>
-            {trend && (
-                <p className="text-xs text-emerald-400 flex items-center gap-1 mt-1">
-                    <ArrowUpRight className="h-4 w-4" />
-                    {trend}% from last month
-                </p>
-            )}
-        </div>
-    );
-
     return (
         <div className="min-h-screen bg-black p-8">
             <div className="max-w-7xl mx-auto">

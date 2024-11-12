@@ -1,25 +1,30 @@
-import React from 'react';
+import { React, useState } from 'react';
 import PlatformSelector from './PlatformSelector';
 import ComponentSelector from './ComponentSelector';
 import BuildSummary from './BuildSummary';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { usePCParts } from '../../contexts/PCPartsContext';
+import CustomAlert from '../CustomAlert';
 
 const PCCustomizer = () => {
 
   const navigate = useNavigate();
   const { user } = useAuth();
   const { areAllComponentsSelected } = usePCParts();
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
 
   const handlePurchaseBuild = () => {
     if (!user) {
-      alert('Please log in to purchase a build.');
+      setAlertMessage('Please log in to purchase a build.');
+      setShowAlert(true);
       return;
     }
 
     if (!areAllComponentsSelected()) {
-      alert('Please select all components before purchasing.');
+      setAlertMessage('Please select all components before purchasing.');
+      setShowAlert(true);
       return;
     }
 
@@ -40,7 +45,7 @@ const PCCustomizer = () => {
                 src="/images/pcBuild.jpeg"
                 alt="Custom PC Build"
                 className="max-w-full max-h-[400px] object-contain scale-150"
-                style={{transform: "scale(1.0)"}}
+                style={{ transform: "scale(1.0)" }}
               />
             </div>
             <div className="w-2/3 bg-gradient-to-b from-red-600 to-purple-800 p-8">
@@ -53,16 +58,19 @@ const PCCustomizer = () => {
           </div>
         </div>
         <div className="mt-8">
-        <h1 className="text-4xl font-bold mb-6 text-[#2c3e50]">YOUR BUILD</h1>
+          <h1 className="text-4xl font-bold mb-6 text-[#2c3e50]">YOUR BUILD</h1>
           <BuildSummary />
         </div>
-       <button
-        onClick={handlePurchaseBuild}
-        className="mt-6 w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300"
-      >
-        Purchase Build
-      </button>
+        <button
+          onClick={handlePurchaseBuild}
+          className="mt-6 w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300"
+        >
+          Purchase Build
+        </button>
       </div>
+      {showAlert && (
+        <CustomAlert message={alertMessage} onClose={() => setShowAlert(false)} />
+      )}
     </div>
   );
 };

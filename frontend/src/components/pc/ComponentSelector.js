@@ -15,7 +15,6 @@ const ComponentSelector = () => {
         const response = await axios.get('http://localhost:4000/api/pc/pcparts');
         const fetchedComponents = response.data;
         
-        // Group components by type
         const groupedComponents = fetchedComponents.reduce((acc, component) => {
           if (!acc[component.type]) {
             acc[component.type] = {

@@ -30,9 +30,7 @@ export default function Component() {
       setCartItems(cartItems);
       setOrderSummary(orderSummary);
     } else {
-      // Handle the case where no state was passed
       console.error('No cart items or order summary found');
-      // Optionally, redirect back to the cart page
       // navigate('/cart');
     }
   }, [location, navigate]);
