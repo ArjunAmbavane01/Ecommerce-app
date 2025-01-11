@@ -1,0 +1,213 @@
+[
+    {
+      "type": "CPU",
+      "name": "Intel Core i5-12600K",
+      "price": 299,
+      "platform": "intel"
+    },
+    {
+      "type": "CPU",
+      "name": "Intel Core i7-12700K",
+      "price": 399,
+      "platform": "intel"
+    },
+    {
+      "type": "CPU",
+      "name": "Intel Core i9-12900K",
+      "price": 599,
+      "platform": "intel"
+    },
+    {
+      "type": "CPU",
+      "name": "AMD Ryzen 5 5600X",
+      "price": 299,
+      "platform": "amd"
+    },
+    {
+      "type": "CPU",
+      "name": "AMD Ryzen 7 5800X",
+      "price": 449,
+      "platform": "amd"
+    },
+    {
+      "type": "Motherboard",
+      "name": "ASUS ROG Strix Z690-E Gaming",
+      "price": 469,
+      "platform": "intel"
+    },
+    {
+      "type": "Motherboard",
+      "name": "MSI MPG Z690 Carbon WiFi",
+      "price": 399,
+      "platform": "intel"
+    },
+    {
+      "type": "Motherboard",
+      "name": "Gigabyte Z690 AORUS Elite AX",
+      "price": 289,
+      "platform": "intel"
+    },
+    {
+      "type": "Motherboard",
+      "name": "ASUS ROG Strix B550-F Gaming",
+      "price": 189,
+      "platform": "amd"
+    },
+    {
+      "type": "Motherboard",
+      "name": "MSI MPG B550 Gaming Edge WiFi",
+      "price": 199,
+      "platform": "amd"
+    },
+    {
+      "type": "RAM",
+      "name": "Corsair Vengeance LPX 16GB",
+      "price": 89,
+      "platform": "both"
+    },
+    {
+      "type": "RAM",
+      "name": "G.Skill Ripjaws V 32GB",
+      "price": 129,
+      "platform": "both"
+    },
+    {
+      "type": "RAM",
+      "name": "Crucial Ballistix 16GB",
+      "price": 79,
+      "platform": "both"
+    },
+    {
+      "type": "RAM",
+      "name": "TeamGroup T-Force Delta RGB 32GB",
+      "price": 149,
+      "platform": "both"
+    },
+    {
+      "type": "RAM",
+      "name": "Kingston FURY Beast 64GB",
+      "price": 299,
+      "platform": "both"
+    },
+    {
+      "type": "GPU",
+      "name": "NVIDIA GeForce RTX 3060 Ti",
+      "price": 399,
+      "platform": "both"
+    },
+    {
+      "type": "GPU",
+      "name": "AMD Radeon RX 6700 XT",
+      "price": 479,
+      "platform": "both"
+    },
+    {
+      "type": "GPU",
+      "name": "NVIDIA GeForce RTX 3070",
+      "price": 499,
+      "platform": "both"
+    },
+    {
+      "type": "GPU",
+      "name": "AMD Radeon RX 6800",
+      "price": 579,
+      "platform": "both"
+    },
+    {
+      "type": "GPU",
+      "name": "NVIDIA GeForce RTX 3080",
+      "price": 699,
+      "platform": "both"
+    },
+    {
+      "type": "Storage",
+      "name": "Samsung 970 EVO Plus 1TB",
+      "price": 129,
+      "platform": "both"
+    },
+    {
+      "type": "Storage",
+      "name": "Western Digital Black SN750 1TB",
+      "price": 119,
+      "platform": "both"
+    },
+    {
+      "type": "Storage",
+      "name": "Crucial P5 1TB",
+      "price": 109,
+      "platform": "both"
+    },
+    {
+      "type": "Storage",
+      "name": "Sabrent Rocket 4 Plus 1TB",
+      "price": 169,
+      "platform": "both"
+    },
+    {
+      "type": "Storage",
+      "name": "Corsair MP600 Pro 1TB",
+      "price": 189,
+      "platform": "both"
+    },
+    {
+      "type": "Power Supply",
+      "name": "Corsair RM750x",
+      "price": 129,
+      "platform": "both"
+    },
+    {
+      "type": "Power Supply",
+      "name": "EVGA SuperNOVA 650 G5",
+      "price": 99,
+      "platform": "both"
+    },
+    {
+      "type": "Power Supply",
+      "name": "Seasonic Focus GX-650",
+      "price": 109,
+      "platform": "both"
+    },
+    {
+      "type": "Power Supply",
+      "name": "be quiet! Straight Power 11 750W",
+      "price": 139,
+      "platform": "both"
+    },
+    {
+      "type": "Power Supply",
+      "name": "Thermaltake Toughpower GF1 850W",
+      "price": 159,
+      "platform": "both"
+    },
+    {
+      "type": "Case",
+      "name": "NZXT H510",
+      "price": 69,
+      "platform": "both"
+    },
+    {
+      "type": "Case",
+      "name": "Fractal Design Meshify C",
+      "price": 89,
+      "platform": "both"
+    },
+    {
+      "type": "Case",
+      "name": "Phanteks Eclipse P300A",
+      "price": 59,
+      "platform": "both"
+    },
+    {
+      "type": "Case",
+      "name": "Lian Li LANCOOL II Mesh",
+      "price": 99,
+      "platform": "both"
+    },
+    {
+      "type": "Case",
+      "name": "Corsair 4000D Airflow",
+      "price": 79,
+      "platform": "both"
+    }
+  ]
+  
